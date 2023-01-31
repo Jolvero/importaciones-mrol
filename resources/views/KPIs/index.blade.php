@@ -7,7 +7,7 @@
 
 <h2 class="font-weight-bold ml-5 ml-md-0">KPI's</h2>
 
-<div class="form-group">
+<div class="form-group ml-5 ml-md-0">
     <label for="mes">Mes</label>
     <select name="mes" id="mes" class="form-control">
         <option value="">-- Seleccione --</option>
@@ -19,7 +19,7 @@
 
 </div>
 
-<div class="form-group">
+<div class="form-group ml-5 ml-md-0">
     <label for="tipo">Tipo</label>
     <select name="tipo" id="tipo" class="form-control">
         <option value="">-- Seleccione --</option>
@@ -30,7 +30,7 @@
 
 </div>
 
-<div class="form-group">
+<div class="form-group ml-5 ml-md-0">
     <label for="tipo">Cliente</label>
     <select name="cliente" id="cliente" class="form-control">
         <option value="">-- Seleccione --</option>
@@ -41,7 +41,7 @@
 
 </div>
 
-<section class="kpis mt-5 pt-3">
+<section class="kpis mt-5 pt-3 ml-5 ml-md-0">
     <div class="row mensaje">
     </div>
 

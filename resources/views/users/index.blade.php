@@ -13,8 +13,8 @@
     <h1 class="font-weight-bold ml-5 ml-md-0">Usuarios</h1>
 
     <div class="row justify-content-end mt-4">
-        <button class="btn btn-success" data-toggle="modal" data-target="#nuevousuario"><img
-                src="{{ '/images/anadir.png' }}" width="50px" alt=""> Nuevo Usuario</button>
+        <button class="btn btn-nuevo-usuario" data-toggle="modal" data-target="#nuevousuario"><img
+                src="{{ '/images/anadir.png' }}"width="50px" alt=""> Nuevo Usuario</button>
 
         <!-- Modal -->
 

@@ -41,15 +41,22 @@ class CorreosVivo extends Command
      */
     public function handle()
     {
-        $embarquesVivo = Embarque::where('cliente_id', 2)->where('estado_id', 6)->where('despacho_id', '<>', 5)->get();
+        $horarioEnvio = date('G');
 
-        $contar = $embarquesVivo->count();
-
-        if($contar> 0)
+        if($horarioEnvio > '8' && $horarioEnvio < '19')
         {
-            Mail::to('sistemas@mrollogistics.com.mx')->send(new DespachoMail($embarquesVivo));
+            $embarquesVivo = Embarque::where('cliente_id', 2)->where('estado_id', 6)->where('despacho_id', '<>', 5)->get();
 
+            $contar = $embarquesVivo->count();
+
+            if($contar> 0)
+            {
+                Mail::to('sistemas@mrollogistics.com.mx')->send(new DespachoMail($embarquesVivo));
+
+            }
         }
+
+
 
     }
 }

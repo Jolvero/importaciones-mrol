@@ -698,10 +698,22 @@ Item
 
 // botones
 
-.btn-nueva-importacion,.btn-nuevo-cliente {
-    background-color: #a3a3a3;
+.btn-nueva-importacion,.btn-nuevo-cliente,.btn-nuevo-usuario {
+    background-color: #747474;
+    color: #ffffff;
 }
 
-.btn-nueva-importacion,.btn-nuevo-cliente:hover {
-    background-color: #707070;
+.btn-nuevo-usuario:hover {
+    background-color: #373737;
+    color: #ffffff;
+}
+
+.btn-nueva-importacion:hover {
+    background-color: #373737;
+    color: #ffffff;
+}
+
+.btn-nuevo-cliente:hover {
+    background-color: #373737;
+    color: #ffffff;
 }
