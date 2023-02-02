@@ -75,15 +75,7 @@ $('#formulario').on('submit', function validarFormulario() {
         return false;
     }
 
-    const documentacion = document.getElementById('documentacion').value;
 
-    if(documentacion == null || documentacion == 0 || /^\+$/.test(documentacion)) {
-        Swal.fire({
-            title: 'validación',
-            text: 'El campo fecha documentación es requerido'
-        })
-        return false;
-    }
 
     const documentacionArchivos = document.getElementById('files').files.length;
     // validar si el usuario esta editando la importacion y no validar documentacion
@@ -196,15 +188,14 @@ $('#clientes_filtro').on('change', function filtrar() {
             $('tbody').children().remove();
 
             for(let i=0; i<data.length; ++i) {
-                embarques += `<td>${data[i].referencia}</td>`+
+                embarques += `<tr><td>${data[i].referencia}</td>`+
                 `<td class="font-weight-bold">${data[i].estado.nombre}</td>`+
                 `<td><a href="/importacion/${data[i].id}" class="btn btn-primary d-block mb-2">Ver</a>`+
                 `<a href="/embarques/${data[i].id}/edit" class="btn btn-dark d-block mb-2">Editar</a>` +
-                `<a class="btn btn-danger d-block mb-2" data-id="${data[i].id}" id="eliminar-embarque">Eliminar x</a></td>`
-
+                `<a class="btn btn-danger d-block mb-2" data-id="${data[i].id}" id="eliminar-embarque">Eliminar x</a></td></tr>`
             }
 
-            $('tbody').append(embarques)
+            $('tbody').append(embarques);
 
             $('#eliminar-embarque').on('click', function(el) {
                 const attribute = document.querySelector('#eliminar-embarque').getAttribute('data-id');
