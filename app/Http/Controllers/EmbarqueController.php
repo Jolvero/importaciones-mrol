@@ -115,7 +115,7 @@ class EmbarqueController extends Controller
             'referencia' => 'required|min:7',
             'estado_id' => 'required',
             'documentacion_id' => 'required',
-            'documentacion' => 'required',
+            'documentacion' => 'nullable',
             'file_id' => 'required',
             'prealertado' => 'required',
             'arribo' => 'nullable',

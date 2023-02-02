@@ -62,7 +62,7 @@ class CreateEmbarquesTable extends Migration
             $table->string('referencia');
             $table->date('prealertado');
             $table->foreignId('documentacion_id')->references('id')->on('documentacion_embarques')->comment('el estatus de documentación del embarque');
-            $table->date('documentacion');
+            $table->date('documentacion')->nullable();
             $table->uuid('file_id');
             $table->foreignId('estado_id')->references('id')->on('estado_embarques')->comment('el estatus del embarque');
             $table->string('user');
