@@ -33,7 +33,9 @@ function kpis() {
     $.get('/kpis/'+ $('#mes').val()+ '/'+ $('#tipo').val()+ '/'+ $('#cliente').val(), function(data) {
         $('#kpis').children().remove()
 
-        if(data.length>0) {
+        if(data[0].length>0 || data[1].length> 0 || data[2].length > 0 || data[3].length> 0) {
+
+            console.log(data)
             let referencias = [];
             for(let i = 0; i < data[3].length; ++i) {
                 referencias.push(data[3][i])
