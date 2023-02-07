@@ -75,8 +75,6 @@ $('#formulario').on('submit', function validarFormulario() {
         return false;
     }
 
-
-
     const documentacionArchivos = document.getElementById('files').files.length;
     // validar si el usuario esta editando la importacion y no validar documentacion
     const tipoDocumentacion = document.querySelector('#files').getAttribute('data-tipo');

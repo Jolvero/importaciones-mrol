@@ -93,13 +93,13 @@ class KpiController extends Controller
 
                 $ajaxDespCG[] = $diferencia;
             }
-            $ajaxPrincipal[]= $ajaxDocArribo;
-            $ajaxPrincipal[]= $ajaxArrDespacho;
-            $ajaxPrincipal[]= $ajaxDespCG;
-            $ajaxPrincipal[]= $ajaxReferencias;
+
 
         }
-
+        $ajaxPrincipal[]= $ajaxDocArribo;
+        $ajaxPrincipal[]= $ajaxArrDespacho;
+        $ajaxPrincipal[]= $ajaxDespCG;
+        $ajaxPrincipal[]= $ajaxReferencias;
 
             return $ajaxPrincipal;
 
@@ -118,37 +118,7 @@ class KpiController extends Controller
         //
     }
 
-    public function enviarKpis(Request $request, Kpi $kpis)
-    {
-        if ($request['cliente'] == '0' && strlen($request['email'] == 0)) {
-            return back()->with('form', 'Debes seleccionar un cliente y ingresar un Correo Electrónico');
-        }
 
-        if ($request['tipo'] == '0') {
-            $kpisCliente = Kpi::where('id_mes', $request['mes'])->where('id_cliente', $request['cliente'])->get();
-
-            if (strlen($kpisCliente) < 5) {
-                return back()->with('form', 'No puedes enviar un Correo sin datos');
-            }
-            Mail::to($request['email'])->send(new Kpis($kpisCliente));
-
-            return back()->with('successform', 'KPIs enviados');
-        }
-
-
-        if ($request['tipo'] !== '0') {
-            $kpis = Kpi::where('id_mes', $request['mes'])->where('id_tipo', $request['tipo'])->where('id_cliente', $request['cliente'])->get();
-
-            if (strlen($kpis) < 5) {
-
-                return back()->with('form', 'No puedes enviar un Correo Vacío');
-            }
-            Mail::to($request['email'])->send(new Kpis($kpis));
-
-            return back()->with('successform', 'KPIs enviados');
-
-        }
-    }
 
     /**
      * Store a newly created resource in storage.
