@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use App\DocumentacionEmbarque;
 use App\Exports\EmbarquesExport;
 use App\Mail\DespachoMail;
+use App\Mail\PrevioVivo;
 use App\Mail\ProformaMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
@@ -283,6 +284,7 @@ class EmbarqueController extends Controller
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
         }
 
+
         return view('embarques.edit', compact('clientes', 'tipos', 'obtenerMeses', 'estados', 'documentaciones', 'embarque', 'imagenes', 'files', 'cuentas', 'proforma', 'elementosDespachos'));
     }
 
@@ -446,18 +448,36 @@ class EmbarqueController extends Controller
         $embarque->save();
 
 
+
+        if($embarque->estado_id == 4 && $request['cliente_id'] == 2)
+        {
+            // mandar adjuntos por correo de previo
+            $importacion = Embarque::whereId($embarque->id)->get();
+
+            $adjuntos = [];
+            $obtenerPrevios = Imagen::where('id_embarque', $embarque->uuid)->get();
+
+            foreach($obtenerPrevios as $foto)
+            {
+                $adjuntos[] = storage_path('app/public/' .$foto->ruta_imagen);
+            }
+
+            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new PrevioVivo($importacion, $adjuntos));
+        }
+
         if($request['estado_id'] == 5 && $obtenerNombreProforma != '' && $request['cliente_id'] == 2)
         {
+            $importacion = Embarque::whereId($embarque->id)->get();
+
             $obtenerProforma = storage_path('app/public/'.$carpetaAdjunto.'/'. $obtenerNombreProforma);
 
-            $importacion = Embarque::whereId($embarque->id)->get();
-            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->send(new ProformaMail($importacion, $obtenerProforma));
+            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new ProformaMail($importacion, $obtenerProforma));
         }
 
         if($request['estado_id'] == 6 && $request['cliente_id'] == 2)
         {
             $despacho = Embarque::whereId($embarque->id)->get();
-            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->send(new DespachoMail($despacho));
+            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new DespachoMail($despacho));
         }
 
         // Redireccionar
