@@ -67,8 +67,7 @@ class EmbarqueController extends Controller
         $this->authorize('create', $embarque);
         $obtenerMeses = DB::table('meses')->get();
 
-        foreach($clientes as $cliente)
-        {
+        foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
         }
         //
@@ -94,8 +93,6 @@ class EmbarqueController extends Controller
      */
     public function create(Embarque $embarque)
     {
-
-
     }
 
 
@@ -132,6 +129,7 @@ class EmbarqueController extends Controller
             'observaciones' => 'nullable',
             'observaciones_pedimento' => 'nullable'
         ]);
+
 
         $verificarExistencias = Embarque::where('referencia', $request['referencia'])->pluck('referencia')->last();
         if ($verificarExistencias == $request['referencia']) {
@@ -188,8 +186,7 @@ class EmbarqueController extends Controller
             foreach ($filesProformaPedimento as $file) {
                 $nombre = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
-                if($extension != 'pdf')
-                {
+                if ($extension != 'pdf') {
                     return back()->with('estado', 'Solo puedes agregar archivos pdf a la proforma');
                 }
                 $nombre = preg_replace('/[+\;\(\)\/\ \#\|\" "]+/', '-', $nombre);
@@ -279,8 +276,7 @@ class EmbarqueController extends Controller
         $files = File::where('id_embarque', $embarque->file_id)->get();
         $cuentas = CuentaEmbarque::where('id_embarque', $embarque->uuid_cta_gastos)->get();
 
-        foreach($clientes as $cliente)
-        {
+        foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
         }
 
@@ -324,6 +320,8 @@ class EmbarqueController extends Controller
             'observaciones_pedimento' => 'nullable',
             'observaciones' => 'nullable'
         ]);
+
+
 
         $obtenerNombreProforma = '';
         $file = File::where('id_embarque', $embarque->file_id);
@@ -370,8 +368,7 @@ class EmbarqueController extends Controller
                 $nombre = $file->getClientOriginalName();
                 $obtenerNombreProforma = $nombre;
                 $extension = $file->getClientOriginalExtension();
-                if($extension != 'pdf')
-                {
+                if ($extension != 'pdf') {
                     return back()->with('estado', 'Solo puedes agregar archivos pdf a la proforma');
                 }
                 // Quitar espacios en blanco
@@ -436,10 +433,8 @@ class EmbarqueController extends Controller
         $embarque->despacho_id = $data['despacho_id'];
         $embarque->cuenta_gastos = $data['cuenta_gastos'];
         $embarque->pago_anticipo = $data['pago_anticipo'];
-        if($request['observaciones_pedimento'] != null)
-        {
+        if ($request['observaciones_pedimento'] != null) {
             $embarque->observaciones_pedimento = $data['observaciones_pedimento'];
-
         }
         $embarque->observaciones = $data['observaciones'];
 
@@ -449,33 +444,35 @@ class EmbarqueController extends Controller
 
 
 
-        if($embarque->estado_id == 4 && $request['cliente_id'] == 2)
-        {
-            // mandar adjuntos por correo de previo
-            $importacion = Embarque::whereId($embarque->id)->get();
+        if ($embarque->estado_id == 4 && $request['cliente_id'] == 2) {
+            // validar si el usuario ha subido fotos
+            $validarFotos = Imagen::where('id_embarque', $embarque->uuid)->count();
 
-            $adjuntos = [];
-            $obtenerPrevios = Imagen::where('id_embarque', $embarque->uuid)->get();
+            if ($validarFotos > 0) {
+                // mandar adjuntos por correo de previo
 
-            foreach($obtenerPrevios as $foto)
-            {
-                $adjuntos[] = storage_path('app/public/' .$foto->ruta_imagen);
+                $importacion = Embarque::whereId($embarque->id)->get();
+
+                $adjuntos = [];
+                $obtenerPrevios = Imagen::where('id_embarque', $embarque->uuid)->get();
+
+                foreach ($obtenerPrevios as $foto) {
+                    $adjuntos[] = storage_path('app/public/' . $foto->ruta_imagen);
+                }
+
+                Mail::to('sistemas@mrollogistics.com.mx')->send(new PrevioVivo($importacion, $adjuntos));
             }
-
-            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new PrevioVivo($importacion, $adjuntos));
         }
 
-        if($request['estado_id'] == 5 && $obtenerNombreProforma != '' && $request['cliente_id'] == 2)
-        {
+        if ($request['estado_id'] == 5 && $obtenerNombreProforma != '' && $request['cliente_id'] == 2) {
             $importacion = Embarque::whereId($embarque->id)->get();
 
-            $obtenerProforma = storage_path('app/public/'.$carpetaAdjunto.'/'. $obtenerNombreProforma);
+            $obtenerProforma = storage_path('app/public/' . $carpetaAdjunto . '/' . $obtenerNombreProforma);
 
             Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new ProformaMail($importacion, $obtenerProforma));
         }
 
-        if($request['estado_id'] == 6 && $request['cliente_id'] == 2)
-        {
+        if ($request['estado_id'] == 6 && $request['cliente_id'] == 2) {
             $despacho = Embarque::whereId($embarque->id)->get();
             Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new DespachoMail($despacho));
         }
@@ -504,7 +501,7 @@ class EmbarqueController extends Controller
         $carpeta = str_replace('+', '_', $carpeta);
         $carpeta = str_replace('|', '_', $carpeta);
         $carpeta = str_replace('/', '_', $carpeta);
-        Storage::deleteDirectory("storage/". $carpeta);
+        Storage::deleteDirectory("storage/" . $carpeta);
 
         // Eliminar registros de la BD
 
@@ -542,8 +539,7 @@ class EmbarqueController extends Controller
     // Busqueda de embarques en el panel de administración
     public function searchEmbarque(Request $request, Embarque $embarque)
     {
-        if(Auth::user()->rol_id !== 3)
-        {
+        if (Auth::user()->rol_id !== 3) {
             $busqueda = $request->get('buscarEmbarque');
             $busquedaCliente = 0;
             $clientes = Cliente::where('cliente', $request['buscarEmbarque'])->get();
@@ -580,9 +576,7 @@ class EmbarqueController extends Controller
             }
 
             return view('busquedas.show2', compact('embarques', 'busqueda', 'clientes'));
-        }
-        else
-        {
+        } else {
             abort(403, 'Unauthorized');
         }
         // $busqueda = $request['buscar'];
@@ -593,14 +587,10 @@ class EmbarqueController extends Controller
     {
         $embarques = Embarque::where('cliente_id', $id)->get();
 
-        foreach($embarques as $embarque)
-        {
+        foreach ($embarques as $embarque) {
             $embarque->estado->nombre = $embarque->estado->nombre;
         }
 
         return $embarques;
-
     }
-
-
 }

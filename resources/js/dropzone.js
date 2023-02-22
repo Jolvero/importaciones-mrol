@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dropzone = new Dropzone('div#dropzone', {
             url: '/imagenes/store',
             dictDefaultMessage: 'Sube tus imagenes de evidencias de previo',
-            maxFiles: 20,
+            maxFiles: 100,
             acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
             addRemoveLinks: true,
             dictRemoveFile: 'Eliminar Imagen',
