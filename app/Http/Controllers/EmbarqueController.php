@@ -460,7 +460,7 @@ class EmbarqueController extends Controller
                     $adjuntos[] = storage_path('app/public/' . $foto->ruta_imagen);
                 }
 
-                Mail::to('sistemas@mrollogistics.com.mx')->send(new PrevioVivo($importacion, $adjuntos));
+                Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->bcc('sistemas@mrollogistics.com.mx')->send(new PrevioVivo($importacion, $adjuntos));
             }
         }
 
@@ -469,12 +469,12 @@ class EmbarqueController extends Controller
 
             $obtenerProforma = storage_path('app/public/' . $carpetaAdjunto . '/' . $obtenerNombreProforma);
 
-            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new ProformaMail($importacion, $obtenerProforma));
+            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->bcc('sistemas@mrollogistics.com.mx')->send(new ProformaMail($importacion, $obtenerProforma));
         }
 
         if ($request['estado_id'] == 6 && $request['cliente_id'] == 2) {
             $despacho = Embarque::whereId($embarque->id)->get();
-            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->cc('sistemas@mrollogistics.com.mx')->send(new DespachoMail($despacho));
+            Mail::to('yesica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->bcc('sistemas@mrollogistics.com.mx')->send(new DespachoMail($despacho));
         }
 
         // Redireccionar
