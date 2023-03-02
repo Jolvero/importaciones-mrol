@@ -70,6 +70,8 @@ Route::get('/estado/{estadoEmbarque}', 'EstadosController@show')->name('estados.
 Route::get('/buscar', 'EmbarqueController@search')->name('buscar.show');
 Route::get('/buscarEmbarque', 'EmbarqueController@searchEmbarque')->name('buscarEmbarques.show');
 
+Route::get('/zip', 'EmbarqueController@prueba');
+
 // Route::resource('embarques', 'EmbarqueController');
 
 Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');

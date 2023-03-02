@@ -35,6 +35,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Crypt;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class EmbarqueController extends Controller
 {
@@ -42,6 +43,26 @@ class EmbarqueController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function prueba()
+    {
+
+        $zip = new ZipArchive();
+        $fileName = 'myzip.zip';
+        if($zip->open(public_path('/images'. $fileName),ZipArchive::CREATE)== TRUE)
+        {
+            $files = File::files(public_path('myfiles'));
+
+            foreach($files as $file => $value)
+            {
+                $relativeName = basename($value);
+                $zip->addFile($value, $relativeName);
+            }
+
+            $zip->close();
+        }
+        return response()->download(public_path($fileName));
     }
     /**
      * Display a listing of the resource.
