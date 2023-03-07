@@ -314,7 +314,7 @@
                                     <a href="{{ route('previo.descargar', ['embarque' => $embarque->id]) }}"
                                         class="float-right font-weight-bold btn btn-primary ml-5"><img
                                             src="{{ '/images/descargar_previo.png' }}" class="mr-3" alt=""
-                                            width="50px">Descargar Imagenes </a>
+                                            width="50px">Descargar Imágenes </a>
                                     <div class="row ">
                                         @foreach ($imagenes as $imagen)
                                             <div class="col-md-6 ">
