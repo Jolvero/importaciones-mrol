@@ -59,6 +59,8 @@ Route::get('/file/{file}/edit', 'FileController@edit')->name('files.edit');
 Route::delete('/file/{file}', 'FileController@destroy')->name('files.destroy');
 Route::post('/upload', 'FileController@store')->name('users.files.store');
 
+Route::get('/descargarprevio/{embarque}','EmbarqueController@descargarPrevios')->name('previo.descargar');
+
 // Rutas de archivos de cuenta de gastos
 Route::get('/cuenta/{cuenta}', 'CuentasController@show')->name('cuentas.show');
 Route::get('/cuenta/{cuenta}/edit', 'CuentasController@edit')->name('cuentas.edit');
@@ -70,7 +72,6 @@ Route::get('/estado/{estadoEmbarque}', 'EstadosController@show')->name('estados.
 Route::get('/buscar', 'EmbarqueController@search')->name('buscar.show');
 Route::get('/buscarEmbarque', 'EmbarqueController@searchEmbarque')->name('buscarEmbarques.show');
 
-Route::get('/zip', 'EmbarqueController@prueba');
 
 // Route::resource('embarques', 'EmbarqueController');
 
@@ -106,3 +107,4 @@ Route::get('storage-link', function () {
     );
     return 'The [public/storage] directory has been linked';
 });
+

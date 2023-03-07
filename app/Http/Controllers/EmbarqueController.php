@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File as FacadesFile;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
@@ -43,26 +44,6 @@ class EmbarqueController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-
-    public function prueba()
-    {
-
-        $zip = new ZipArchive();
-        $fileName = 'myzip.zip';
-        if($zip->open(public_path('/images'. $fileName),ZipArchive::CREATE)== TRUE)
-        {
-            $files = File::files(public_path('myfiles'));
-
-            foreach($files as $file => $value)
-            {
-                $relativeName = basename($value);
-                $zip->addFile($value, $relativeName);
-            }
-
-            $zip->close();
-        }
-        return response()->download(public_path($fileName));
     }
     /**
      * Display a listing of the resource.
@@ -257,6 +238,49 @@ class EmbarqueController extends Controller
         return back()->with('success', 'Importación subida correctamente');
     }
 
+    public function descargarPrevios(Embarque $embarque, FacadesFile $file)
+    {
+        $obtenerPrevios = Imagen::where('id_embarque', $embarque->uuid)->get();
+
+        // crear carpeta nueva
+        $carpeta = $embarque->referencia . '_previo';
+        //validar si ya existe una carpeta y eliminarla
+        $ruta = '/public/embarques/'. $carpeta;
+        $validarCarpeta = Storage::exists('/public/embarques/'. $carpeta);
+        if($validarCarpeta == true)
+        {
+            Storage::deleteDirectory($ruta);
+        }
+        Storage::makeDirectory('/public/embarques/' . $carpeta);
+
+        foreach ($obtenerPrevios as $previo) {
+            $obtenerLongitud = strlen($previo->ruta_imagen);
+            $recortarRuta = substr($previo->ruta_imagen, 10, $obtenerLongitud);
+            $file::copy(public_path('/storage/' . $previo->ruta_imagen), public_path('storage/embarques/' . $carpeta . '/' . $recortarRuta));
+        }
+
+        $zip = new ZipArchive;
+        $fileName = $carpeta . '.zip';
+        // eliminar carpeta zip anteriormente creada
+        if(file_exists($fileName))
+        {
+             unlink(public_path($fileName));
+        }
+
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) == true) {
+
+            $files = $file::files(public_path('/storage/embarques/' . $carpeta));
+
+            foreach ($files as $file => $value) {
+                $nombreRelativo = basename($value);
+                $zip->addFile($value, $nombreRelativo);
+            }
+            $zip->close();
+        }
+
+        return response()->download(public_path($fileName));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -272,8 +296,14 @@ class EmbarqueController extends Controller
         $cuentas = CuentaEmbarque::where('id_embarque', $embarque->uuid_cta_gastos)->get();
         $proforma = ProformaPedimento::where('id_embarque', $embarque->uuid_proforma)->get();
         $despachos = Despacho::all();
-        return view('embarques.show', compact('embarque', 'imagenes', 'files', 'cuentas', 'proforma', 'despachos'));
+        $directorioPrevio = false;
+        $obtenerLongitud = 0;
+        $recortarRuta = '';
+
+        return view('embarques.show', compact('embarque', 'imagenes', 'files', 'cuentas', 'proforma', 'despachos', 'directorioPrevio'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

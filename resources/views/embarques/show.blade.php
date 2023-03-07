@@ -216,6 +216,7 @@
                         @endif
 
 
+
                         </ul>
                     </section>
 
@@ -227,29 +228,33 @@
                     <ul class="nav nav-tabs flex-column">
                         @if (count($files) > 0)
                             <li class="nav-item">
-                                <a class="nav-link active show bg-primary text-white" data-toggle="tab"
-                                    href="#tab-1">Documentación</a>
+                                <a class="nav-link active show bg-primary text-white" data-toggle="tab" href="#tab-1">
+                                    <img src="{{ '/images/documentacion.png' }}" alt="" width="50px" class="mr-2">
+                                    Documentación</a>
                             </li>
                         @endif
 
                         @if (count($proforma) > 0)
                             <li class="nav-item">
                                 <a class="nav-link bg-primary text-white mt-2" data-toggle="tab"
-                                    href="#tab-4">Proforma</a>
+                                    href="#tab-4"><img
+                                    src="{{ '/images/pedimento.png' }}" alt="" width="45px"
+                                    class="mr-2"> Proforma </a>
                             </li>
                         @endif
 
                         @if (count($imagenes) > 0)
                             <li class="nav-item">
-                                <a class="nav-link bg-primary text-white mt-2" data-toggle="tab"
-                                    href="#tab-2">Evidencias Previo</a>
+                                <a class="nav-link bg-primary text-white mt-2" data-toggle="tab" href="#tab-2"><img
+                                        src="{{ '/images/previo.png' }}" alt="" width="50px"
+                                        class="mr-2">Evidencias Previo</a>
                             </li>
                         @endif
 
                         @if (count($cuentas) > 0)
                             <li class="nav-item">
                                 <a class="nav-link bg-primary text-white mt-2" data-toggle="tab"
-                                    href="#tab-3">Cuenta
+                                    href="#tab-3"> <img src="{{'/images/cuenta-gastos.png'}}" width="40px" alt="" class="mr-2">Cuenta
                                     de Gastos</a>
                             </li>
                         @endif
@@ -306,15 +311,30 @@
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h2 class=" text-center text-primary mb-4">Evidencias Previo</h2>
+                                    <a href="{{ route('previo.descargar', ['embarque' => $embarque->id]) }}"
+                                        class="float-right font-weight-bold btn btn-primary ml-5"><img
+                                            src="{{ '/images/descargar_previo.png' }}" class="mr-3" alt=""
+                                            width="50px">Descargar Imagenes </a>
                                     <div class="row ">
                                         @foreach ($imagenes as $imagen)
                                             <div class="col-md-6 ">
                                                 <div class="mx-auto">
-                                                    <a href="/storage/{{ $imagen->ruta_imagen }}"
+                                                    @if ($directorioPrevio == true)
+                                                    <a href="/storage/embarques/{{$embarque->referencia}}_previo/{{$imagen->ruta_imagen}}"
                                                         data-lightbox="imagen">
                                                         <img class="w-100 my-4" style="border: 1px solid;"
-                                                            src="/storage/{{ $imagen->ruta_imagen }}" alt="">
+                                                        src="/storage/embarques/{{$embarque->referencia}}_previo/{{$imagen->ruta_imagen}}"
+                                                        alt="">
                                                     </a>
+                                                        @else
+                                                        <a href="/storage/{{$imagen->ruta_imagen}}"data-lightbox="imagen">
+
+                                                            <img class="w-100 my-4" style="border: 1px solid;"
+                                                                src="/storage/{{ $imagen->ruta_imagen }}"
+                                                                alt="">
+                                                            </a>
+
+                                                        @endforelse
                                                 </div>
                                             </div>
                                         @endforeach
