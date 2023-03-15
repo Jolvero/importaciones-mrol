@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', asignarPedimento)
 
+// validación
 $('#formulario').on('submit', function validarFormulario() {
     const cliente_id = document.getElementById('cliente_id').value;
 

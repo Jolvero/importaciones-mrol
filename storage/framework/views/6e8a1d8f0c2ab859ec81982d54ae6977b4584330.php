@@ -17,13 +17,13 @@
                         class="mt-2"><img src="<?php echo e('/images/logo-panel-removebg-preview.png'); ?>" class="logo-panel" width="50px" height="50px"alt="" ></a>
                 </div>
                 <div class="item-parent py-2">
-                <a href="#submenuEmbarques" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><img
-                        class="ml-2 item-img mr-3 ml-0" src="<?php echo e('/images/contenedores.png'); ?>" alt=""><span
+                <a href="#submenuEmbarques" id="importaciones"data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-link collapsed"><img
+                        class="ml-2 item-img mr-3 ml-0"  src="<?php echo e('/images/contenedores.png'); ?>" alt=""><span
                         class="mt-5">Importaciones</span></a>
                     </div>
-                <ul class="collapse list-unstyled" id="submenuEmbarques">
+                <ul class="sidebar-dropdown list-unstyled collapse"id="submenuEmbarques">
                     <li>
-                        <a class="d-flex link link-importaciones my-2" id="embarque-index" href="<?php echo e(route('embarques.index')); ?>">
+                        <a class="sidebar-item d-flex link link-importaciones my-2" id="embarque-index" href="<?php echo e(route('embarques.index')); ?>">
                             <img class="ml-2 item-img mr-3 ml-0" src="<?php echo e('/images/crear.embarque.png'); ?>"
                                 alt=""><span class="mt-0 consultar-embarque">Consultar o ingresar
                                 Importacion</span>

@@ -11995,6 +11995,16 @@ Item
   }
 }
 
+.dropdown-toggle[aria-expanded=false]:after {
+  transform: rotate(-90deg);
+}
+
+/*for animation*/
+
+.dropdown-toggle:after {
+  transition: 0.7s;
+}
+
 .spinner-section {
   display: none;
   background-color: rgba(51, 51, 51, 0.504);

@@ -40,8 +40,6 @@
 
        @endguest
 
-
-
         <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm py-2 nav-principal">
             <div class="container index m-0 p-0">
                 <div class="d-flex justify-content-start ">

@@ -300,3 +300,11 @@ Item
         padding: 1rem;
     }
 }
+
+.dropdown-toggle[aria-expanded="false"]:after {
+    transform: rotate(-90deg);
+    }
+    /*for animation*/
+    .dropdown-toggle:after {
+    transition: 0.7s;
+    }
