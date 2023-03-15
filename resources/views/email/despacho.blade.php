@@ -7,6 +7,7 @@
     <title>Despacho</title>
 </head>
 <body>
+    <!--hola-->
     @foreach ($despachos as $despacho)
     <h2>Estatus de despacho {{$despacho->referencia}}:<span>{{$despacho->despachos->nombre}}</span></h2>
     <p >Consulta toda la información en <a href="http://127.0.0.1:8000/importacion/{{$despacho->id}}">http://127.0.0.1:8000/importacion/{{$despacho->id}}</a></p>
