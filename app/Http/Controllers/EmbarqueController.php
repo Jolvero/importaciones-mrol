@@ -415,6 +415,7 @@ class EmbarqueController extends Controller
                     return back()->with('estado', 'No pueden agregarse archivos mayores a 20 mb');
                 }
             }
+            //
             foreach ($filesProformaPedimento as $file) {
                 $nombre = $file->getClientOriginalName();
                 $obtenerNombreProforma = $nombre;
