@@ -318,20 +318,20 @@
 
                     </div>
 
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="observaciones_pedimento">Observaciones Pedimento</label>
-                                <textarea name="observaciones_pedimento" id="observaciones_pedimento"
-                                    class="form-control observaciones_pedimento @error('observaciones_pedimento') is-invalid @enderror">{{ old('observaciones_pedimento') }}{{ $embarque->observaciones_pedimento }}</textarea>
-                                @error('observaciones_pedimento')
-                                    <br>
-                                    <small>{{ $message }}</small>
-                                    <br>
-                                @enderror
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="observaciones_pedimento">Observaciones Pedimento</label>
+                            <textarea name="observaciones_pedimento" id="observaciones_pedimento"
+                                class="form-control observaciones_pedimento @error('observaciones_pedimento') is-invalid @enderror">{{ old('observaciones_pedimento') }}{{ $embarque->observaciones_pedimento }}</textarea>
+                            @error('observaciones_pedimento')
+                                <br>
+                                <small>{{ $message }}</small>
+                                <br>
+                            @enderror
 
 
-                            </div>
                         </div>
+                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
