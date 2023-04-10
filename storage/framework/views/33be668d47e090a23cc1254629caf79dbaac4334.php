@@ -25,7 +25,7 @@
 
 
     <!-- Styles -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 
 </head>
@@ -39,8 +39,6 @@
        <?php echo $__env->make('panel.panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
        <?php endif; ?>
-
-
 
         <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm py-2 nav-principal">
             <div class="container index m-0 p-0">

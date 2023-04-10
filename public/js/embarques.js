@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', asignarPedimento)
+const mes = new Date();
+const numero = mes.getMonth()
+const acomodar = numero+1;
+$('#mes_id option[value='+acomodar+']').attr('selected', true)
 
 // validación
 $('#formulario').on('submit', function validarFormulario() {

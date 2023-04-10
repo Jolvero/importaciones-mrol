@@ -22,7 +22,7 @@ export default {
 
                     this.$swal({
                 title: 'Eliminar',
-                text: 'Eliminando Cliente',
+                text: 'Eliminando Usuario',
                 icon: 'info',
                 allowOutsideClick: false,
                 AllowEscapeKey: false,
