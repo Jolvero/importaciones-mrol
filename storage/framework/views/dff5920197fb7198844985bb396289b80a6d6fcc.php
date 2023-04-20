@@ -31,10 +31,12 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('styles'); ?>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css">
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('scripts'); ?>
+
     <script src="<?php echo e(asset('js/embarques.js')); ?>" defer></script>
     <script src="<?php echo e(asset('js/alertas.js')); ?>" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js"
@@ -536,7 +538,8 @@ unset($__errorArgs, $__bag); ?>
             data-aos-duration="1000">
             <div class="col-md-6">
                 <p class="buscar display-4 mb-4 ml-5">Buscar Importación</p>
-                <input type="search" name="buscarEmbarque" class="form-control mt-5 ml-5" placeholder="Buscar Importación">
+                <input type="search" name="buscarEmbarque" class="form-control mt-5 ml-5"
+                    placeholder="Buscar Importación">
             </div>
         </div>
         <p class="ml-5 mt-5">Filtrar Importaciones</p>
@@ -556,7 +559,7 @@ unset($__errorArgs, $__bag); ?>
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center my-5 ">Administra tus Importaciones</h2>
 
-        <table class="table bg-white ml-3 ml-md-0">
+        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table">
             <thead class="bg-primary text-light">
                 <tr>
                     <th scole="col">Referencia</th>

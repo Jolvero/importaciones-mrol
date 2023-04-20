@@ -312,7 +312,7 @@
                                     <a href="<?php echo e(route('previo.descargar', ['embarque' => $embarque->id])); ?>"
                                         class="float-right font-weight-bold btn btn-primary ml-5"><img
                                             src="<?php echo e('/images/descargar_previo.png'); ?>" class="mr-3" alt=""
-                                            width="50px">Descargar Imagenes </a>
+                                            width="50px">Descargar Imágenes </a>
                                     <div class="row ">
                                         <?php $__currentLoopData = $imagenes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $imagen): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div class="col-md-6 ">

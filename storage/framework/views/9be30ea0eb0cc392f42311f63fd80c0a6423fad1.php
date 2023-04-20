@@ -389,11 +389,11 @@ unset($__errorArgs, $__bag); ?>
 
                     </div>
 
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="observaciones_pedimento">Observaciones Pedimento</label>
-                                <textarea name="observaciones_pedimento" id="observaciones_pedimento"
-                                    class="form-control observaciones_pedimento <?php $__errorArgs = ['observaciones_pedimento'];
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="observaciones_pedimento">Observaciones Pedimento</label>
+                            <textarea name="observaciones_pedimento" id="observaciones_pedimento"
+                                class="form-control observaciones_pedimento <?php $__errorArgs = ['observaciones_pedimento'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -401,22 +401,22 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"><?php echo e(old('observaciones_pedimento')); ?><?php echo e($embarque->observaciones_pedimento); ?></textarea>
-                                <?php $__errorArgs = ['observaciones_pedimento'];
+                            <?php $__errorArgs = ['observaciones_pedimento'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <br>
-                                    <small><?php echo e($message); ?></small>
-                                    <br>
-                                <?php unset($message);
+                                <br>
+                                <small><?php echo e($message); ?></small>
+                                <br>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
 
 
-                            </div>
                         </div>
+                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group">

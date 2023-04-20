@@ -1,6 +1,5 @@
 $.get('/importaciones/mes', function(data) {
     var options = {
-        colors:['#0edda9', '#E91E63', '#9C27B0'],
 
         series: [{
         name: 'Importaciones',
@@ -47,6 +46,8 @@ $.get('/importaciones/mes', function(data) {
       chart.render();
 })
 
+// etiquetas clientes
+
 $.get('/clientes/nombres', function(data) {
     let clientes = [];
 
@@ -54,6 +55,7 @@ $.get('/clientes/nombres', function(data) {
         clientes = [... clientes, data[i]]
     }
 
+    // importaciones por cliente
     $.get('/importaciones/mes/cliente', function(data) {
         var options = {
             series: data,

@@ -2069,7 +2069,7 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           _this.$swal({
             title: 'Eliminar',
-            text: 'Eliminando Cliente',
+            text: 'Eliminando Usuario',
             icon: 'info',
             allowOutsideClick: false,
             AllowEscapeKey: false,
@@ -56849,9 +56849,9 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
   !*** ./node_modules/owl.carousel/dist/owl.carousel.js ***!
   \********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, jQuery) {/**
+/**
  * Owl Carousel v2.3.4
  * Copyright 2013-2018 David Deutsch
  * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
@@ -58605,7 +58605,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 	 */
 	$.fn.owlCarousel.Constructor = Owl;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * AutoRefresh Plugin
@@ -58717,7 +58717,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Lazy Plugin
@@ -58867,7 +58867,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * AutoHeight Plugin
@@ -59000,7 +59000,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Video Plugin
@@ -59328,7 +59328,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.Video = Video;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Animate Plugin
@@ -59450,7 +59450,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.Animate = Animate;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Autoplay Plugin
@@ -59684,7 +59684,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Navigation Plugin
@@ -60091,7 +60091,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Hash Plugin
@@ -60214,7 +60214,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 	$.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
 /**
  * Support Plugin
@@ -60298,9 +60298,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 		$.support.transform3d = tests.csstransforms3d();
 	}
 
-})(window.Zepto || __webpack_provided_window_dot_jQuery, window, document);
+})(window.Zepto || window.jQuery, window, document);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
@@ -79767,7 +79766,7 @@ __webpack_require__(/*! ./dropzone */ "./resources/js/dropzone.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -79776,7 +79775,7 @@ __webpack_require__(/*! ./dropzone */ "./resources/js/dropzone.js");
 
 try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
-  window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
@@ -79805,7 +79804,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // Instalar Momentjs
 
 window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
