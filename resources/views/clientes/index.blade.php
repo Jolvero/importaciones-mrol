@@ -65,8 +65,8 @@
         <button type="button" data-target="#nuevoCliente" data-toggle="modal" class="float-right btn btn-nuevo-cliente text-white mb-5"><img src="{{ '/images/anadir.png' }}" width="50px" alt=""> Nuevo
             Cliente</button>
 
-        <table class="table">
-            <thead class="bg-primary">
+            <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-clientes">
+                <thead class="bg-primary">
                 <tr class="text-center text-white">
                     <th>#</th>
                     <th>Nombre</th>
@@ -90,9 +90,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-
-    <div class="d-flex justify-content-center">
-        {{ $clientes->links() }}
     </div>
 @endsection

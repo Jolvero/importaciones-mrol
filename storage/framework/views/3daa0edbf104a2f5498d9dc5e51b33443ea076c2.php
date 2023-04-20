@@ -205,7 +205,8 @@ unset($__errorArgs, $__bag); ?>
     </div>
 
     <div class="container mt-5">
-        <table class="table">
+        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-usuarios">
+            <thead>
             <tr class="text-center">
                 <th>#</th>
                 <th>Nombre</th>
@@ -214,6 +215,7 @@ unset($__errorArgs, $__bag); ?>
                 <th>Rol</th>
                 <th>Acciones</th>
             </tr>
+        </thead>
 
             <tbody>
                 <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -588,10 +588,6 @@ unset($__errorArgs, $__bag); ?>
             </tbody>
         </table>
 
-        <div class="col-12 d-flex mt-4 justify-content-center">
-            <?php echo e($embarques->links()); ?>
-
-        </div>
     </div>
 
     <div class="spinner-section fixed-top">

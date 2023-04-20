@@ -62,7 +62,7 @@ class EmbarqueController extends Controller
 
 
         // Embarques con paginación
-        $embarques = Embarque::orderBy('id', 'desc')->paginate(7);
+        $embarques = Embarque::all();
         $clientes = Cliente::all();
         $mes = Carbon::now()->locale('es');
         $mesEspanol = $mes->monthName;

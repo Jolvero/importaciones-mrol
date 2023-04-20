@@ -106,8 +106,8 @@ unset($__errorArgs, $__bag); ?>
         <button type="button" data-target="#nuevoCliente" data-toggle="modal" class="float-right btn btn-nuevo-cliente text-white mb-5"><img src="<?php echo e('/images/anadir.png'); ?>" width="50px" alt=""> Nuevo
             Cliente</button>
 
-        <table class="table">
-            <thead class="bg-primary">
+            <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-clientes">
+                <thead class="bg-primary">
                 <tr class="text-center text-white">
                     <th>#</th>
                     <th>Nombre</th>
@@ -131,11 +131,6 @@ unset($__errorArgs, $__bag); ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
-    </div>
-
-    <div class="d-flex justify-content-center">
-        <?php echo e($clientes->links()); ?>
-
     </div>
 <?php $__env->stopSection(); ?>
 

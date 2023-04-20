@@ -399,9 +399,6 @@
             </tbody>
         </table>
 
-        <div class="col-12 d-flex mt-4 justify-content-center">
-            {{ $embarques->links() }}
-        </div>
     </div>
 
     <div class="spinner-section fixed-top">

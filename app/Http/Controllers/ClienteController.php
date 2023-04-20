@@ -30,7 +30,7 @@ class ClienteController extends Controller
             return back();
         }
         // registrar clientes
-        $clientes = Cliente::paginate(15);
+        $clientes = Cliente::all();
         foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
             if ($cliente->rfc) {
@@ -49,7 +49,7 @@ class ClienteController extends Controller
     public function embarquesCliente()
     {
         $obtenerIdCliente = Auth::user()->cliente_id;
-        $embarquesCliente = Embarque::where('cliente_id', $obtenerIdCliente)->paginate(10);
+        $embarquesCliente = Embarque::where('cliente_id', $obtenerIdCliente)->get();
         return view('clientesEmbarques.index', compact('obtenerIdCliente', 'embarquesCliente'));
     }
 

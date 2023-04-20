@@ -56,9 +56,7 @@
             </tbody>
         </table>
 
-        <div class="col-12 d-flex mt-4 justify-content-center">
-        {{ $embarquesCliente->links()}}
-    </div>
+
     </div>
 </div>
 

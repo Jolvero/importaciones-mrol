@@ -122,7 +122,8 @@
     </div>
 
     <div class="container mt-5">
-        <table class="table">
+        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-usuarios">
+            <thead>
             <tr class="text-center">
                 <th>#</th>
                 <th>Nombre</th>
@@ -131,6 +132,7 @@
                 <th>Rol</th>
                 <th>Acciones</th>
             </tr>
+        </thead>
 
             <tbody>
                 @foreach ($usuarios as $usuario)
