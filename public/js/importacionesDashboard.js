@@ -1,10 +1,12 @@
 $.get('/importaciones/mes', function(data) {
     var options = {
+        colors: [
+            '#0edda9'
+        ],
         series: [{
         name: 'Importaciones',
         data: data
       }],
-
 
         chart: {
         height: 350,
