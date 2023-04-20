@@ -2,6 +2,7 @@
 
 @section('scripts')
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="{{asset('js/table-clientes-embarques.js')}}" defer></script>
 <script>
     AOS.init();
   </script>
@@ -32,7 +33,7 @@
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center my-5 pt-4">Consulta tus Importaciones</h2>
 
-        <table class="table bg-white">
+        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-clientes-embarques">
             <thead class="bg-primary text-light">
                 <tr>
                     <th scole="col">Referencia</th>
