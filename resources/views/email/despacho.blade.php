@@ -12,5 +12,6 @@
     <p >Consulta toda la informaci贸n en <a href="http://importaciones.mrollogistics.com/importacion/{{$despacho->id}}">http://importaciones.mrollogistics.com/importacion/{{$despacho->id}}</a></p>
 
     <img style="display:block" src='http://importaciones.mrollogistics.com/images/logo.jpeg' alt="img-logo" alt="">
+    @endforeach
 </body>
 </html>
