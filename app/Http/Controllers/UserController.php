@@ -65,7 +65,7 @@ class UserController extends Controller
         sleep(5);
         //
         $this->validate($request, [
-            'nombre' => 'required|max:30',
+            'name' => 'required|max:30',
             'username' => 'required|unique:users|max:20',
             'email' => 'required|unique:users|max:60',
             'rol_id' => 'required',
@@ -74,7 +74,7 @@ class UserController extends Controller
         ]);
 
         $user = new User();
-        $user->name = $request['nombre'];
+        $user->name = $request['name'];
         $user->username = $request['username'];
         $user->email = $request['email'];
         $user->rol_id = $request['rol_id'];
@@ -108,9 +108,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
+        $roles = DB::table('rols')->get();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -120,9 +122,35 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
+
+
+
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'rol_id' => 'required',
+            'cliente_id' => 'nullable',
+            'password' => 'required|confirmed|min:6'
+        ]);
+
+        $user->name = $request['name'];
+        $user->rol_id = $request['rol_id'];
+        $user->cliente_id = $request['cliente_id'];
+        $user->password = Hash::make($request['password']);
+
+        $user->save();
+
+        if($user->id == Auth::id())
+        {
+            Auth::logout();
+        }
+
+
+        return redirect()->action('UserController@index')->with('mensaje', 'Usuario Actualizado Correctamente');
+
     }
 
     /**

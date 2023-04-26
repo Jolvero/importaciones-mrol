@@ -2,13 +2,20 @@
 
 @section('scripts')
 <script src="{{asset('js/clientes.js')}}" defer></script>
+<script src="{{asset('js/alertas.js')}}" defer></script>
 @endsection
 
 @section('content')
 
 @if (session('validacion'))
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger text-center" role="alert">
         {{session('validacion')}}
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="alert alert-success text-center" role="alert">
+        {{session('success')}}
     </div>
 @endif
 <!-- modal -->
@@ -24,8 +31,9 @@
             <div class="modal-body">
                 <form action="{{route('cliente.store')}}" method="POST" novalidate id="formulario-clientes">
                 @csrf
+                <p>Campos obligatorios  <span class="text-danger">*</span></p>
                 <div class="form-group">
-                    <label for="cliente">Nombre Cliente</label>
+                    <label for="cliente">Cliente <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('cliente') is-invalid @enderror" name="cliente" id="cliente" value="{{old('cliente')}}">
 
                     @error('cliente')
@@ -83,8 +91,13 @@
                         <td>{{$cliente->rfc}}</td>
                         <td>{{$cliente->direccion}}</td>
                         <td>
-                            <eliminar-cliente cliente-id={{$cliente->id}}></eliminar-cliente>
-                            <a href="{{route('cliente.edit', ['cliente' => $cliente->id])}}" class="btn btn-dark my-2 d-block float-right">Editar</a>
+                            <a href="{{route('cliente.edit', ['cliente' => $cliente->id])}}" class="btn my-2 d-block " style="background: #c3c3c3;"><img src="{{'/images/editar.png'}}" alt=""></a>
+
+                            <form method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="eliminarCliente({{$cliente->id}});" id="{{$cliente->id}}" class="btn btn-dark d-block mb-3 w-100" data-toggle="tooltip" data-placement="top" title="Eliminar Cliente"  ><img src="{{'/images/eliminar.png'}}" alt="" ></button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

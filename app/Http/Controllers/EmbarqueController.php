@@ -570,7 +570,6 @@ class EmbarqueController extends Controller
         $embarque->delete();
 
 
-        return redirect()->action('EmbarqueController@index');
     }
     // Busqueda de embarques en la página principal
     public function search(Embarque $embarque, Request $request)

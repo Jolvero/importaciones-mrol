@@ -12,7 +12,7 @@
 
     <p class="text-primary font-weight-bold">Arribo: <fecha-embarque class="text-dark" fecha="{{$fecha}}"></fecha-embarque></p>
 
-    <a href="{{route('embarques.show', ['embarque' => $embarque->id])}}" class="btn btn-primary d-block btn-receta">Ver importación
+    <a href="{{route('embarques.show', ['embarque' => $embarque->id])}}" class="btn btn-primary d-block btn-embarque">Ver importación
     </a>
 
         </div>

@@ -1,9 +1,10 @@
+// si el usuario es un cliente se agrega select clientes
 $('#rol_id').on('change', function validarRolCliente() {
-    if($('#rol_id option:selected').text() == 'cliente') {
+    if($('#rol_id ').val() == '3' ) {
         $.get('/clientes/all', function (data) {
             var option = '';
                 var select = '<select name="cliente_id" class="form-control"id="cliente_id" name="cliente_id"></select>';
-                var formGroup = '<div class="form-group form-clientes" <label>Cliente</label></div>';
+                var formGroup = '<div class="form-group form-clientes" id="select-cliente" <label>Cliente</label></div>';
 
                 $('#cliente').addClass('col-md-6', 'cliente-select');
                 $('#cliente').append(formGroup);
@@ -16,42 +17,63 @@ $('#rol_id').on('change', function validarRolCliente() {
 
         })
 
+    } else {
+        $('#select-cliente').remove()
     }
 })
 
 $('#form-usuario').on('submit', function () {
-    const nombre = document.getElementById('nombre').value;
+    const nombre = document.getElementById('name').value;
 
     if(nombre == null || nombre == 0 || /^\+$/.test(nombre)) {
 
         Swal.fire({
             title: 'validación',
-            text: 'El campo nombre es requerido'
+            text: 'El campo nombre es requerido',
+            icon: 'error'
         })
         return false;
     }
 
-    const username = document.getElementById('username').value;
+    const username = document.querySelector('#username')
 
-    if(username == null || username == 0 || /^\+$/.test(username)) {
+    if(username) {
+        if(username.value == null || username.value == 0 || /^\+$/.test(username.value)) {
 
+            Swal.fire({
+                title: 'validación',
+                text: 'El campo username es requerido',
+                icon: 'error'
+            })
+            return false;
+        }
+    }
+
+
+    const correo = document.querySelector('#email');
+
+    if(correo) {
+// Define our regular expression.
+var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+    if (validEmail.test(correo.value)) {
+        if(correo.value.includes('.com,mx')) {
+            return;
+        }
+    } else {
         Swal.fire({
-            title: 'validación',
-            text: 'El campo username es requerido'
+            title: 'Error',
+            text: 'El campo email es Requerido, valida que sea una dirección de correo valida',
+            icon: 'error'
         })
         return false;
     }
 
-    const email = document.getElementById('email').value;
-
-    if(email == null || email == 0 || /^\+$/.test(email)) {
-
-        Swal.fire({
-            title: 'validación',
-            text: 'El campo email es requerido'
-        })
-        return false;
     }
+
+
+    // validar email
+
 
     const rol_id = document.getElementById('rol_id').value;
 
@@ -59,7 +81,8 @@ $('#form-usuario').on('submit', function () {
 
         Swal.fire({
             title: 'validación',
-            text: 'El campo rol es requerido'
+            text: 'El campo rol es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -70,7 +93,8 @@ $('#form-usuario').on('submit', function () {
 
         Swal.fire({
             title: 'validación',
-            text: 'El campo password es requerido'
+            text: 'El campo password es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -81,7 +105,8 @@ $('#form-usuario').on('submit', function () {
 
         Swal.fire({
             title: 'validación',
-            text: 'Validar confirmar password'
+            text: 'Validar confirmar password',
+            icon: 'error'
         })
         return false;
     }
@@ -89,7 +114,8 @@ $('#form-usuario').on('submit', function () {
     if(password != password_confirmation) {
         Swal.fire({
             title: 'validación',
-            text: 'Las contraseñas no coinciden'
+            text: 'Las contraseñas no coinciden',
+            icon: 'error'
         })
         return false;
     }

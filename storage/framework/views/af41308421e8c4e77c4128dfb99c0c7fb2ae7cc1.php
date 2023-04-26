@@ -1,12 +1,16 @@
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo e(asset('js/clientes.js')); ?>" defer></script>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
     <h1 class="font-weight-bold ml-5 ml-md-0">Editar Cliente</h1>
 
-    <form action="<?php echo e(route('cliente.update', ['cliente' => $cliente->id])); ?>" method="POST">
+    <form action="<?php echo e(route('cliente.update', ['cliente' => $cliente->id])); ?>" method="POST" id="formulario-clientes" class="ml-5 ml-md-0">
         <?php echo method_field('PUT'); ?>
         <?php echo csrf_field(); ?>
-
+        <p class="font-weight-bold text-center">Campos obligatorios <span class="text-danger">*</span></p>
         <div class="form-group mt-4">
-            <label for="cliente">Cliente</label>
+            <label for="cliente">Cliente <span class="text-danger">*</span></label>
             <input type="text" name="cliente" id="cliente" class="form-control <?php $__errorArgs = ['cliente'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

@@ -1,12 +1,20 @@
 <?php $__env->startSection('scripts'); ?>
 <script src="<?php echo e(asset('js/clientes.js')); ?>" defer></script>
+<script src="<?php echo e(asset('js/alertas.js')); ?>" defer></script>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 
 <?php if(session('validacion')): ?>
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger text-center" role="alert">
         <?php echo e(session('validacion')); ?>
+
+    </div>
+<?php endif; ?>
+
+<?php if(session('success')): ?>
+    <div class="alert alert-success text-center" role="alert">
+        <?php echo e(session('success')); ?>
 
     </div>
 <?php endif; ?>
@@ -23,8 +31,9 @@
             <div class="modal-body">
                 <form action="<?php echo e(route('cliente.store')); ?>" method="POST" novalidate id="formulario-clientes">
                 <?php echo csrf_field(); ?>
+                <p>Campos obligatorios  <span class="text-danger">*</span></p>
                 <div class="form-group">
-                    <label for="cliente">Nombre Cliente</label>
+                    <label for="cliente">Cliente <span class="text-danger">*</span></label>
                     <input type="text" class="form-control <?php $__errorArgs = ['cliente'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -124,8 +133,13 @@ unset($__errorArgs, $__bag); ?>
                         <td><?php echo e($cliente->rfc); ?></td>
                         <td><?php echo e($cliente->direccion); ?></td>
                         <td>
-                            <eliminar-cliente cliente-id=<?php echo e($cliente->id); ?>></eliminar-cliente>
-                            <a href="<?php echo e(route('cliente.edit', ['cliente' => $cliente->id])); ?>" class="btn btn-dark my-2 d-block float-right">Editar</a>
+                            <a href="<?php echo e(route('cliente.edit', ['cliente' => $cliente->id])); ?>" class="btn my-2 d-block " style="background: #c3c3c3;"><img src="<?php echo e('/images/editar.png'); ?>" alt=""></a>
+
+                            <form method="POST">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button type="button" onclick="eliminarCliente(<?php echo e($cliente->id); ?>);" id="<?php echo e($cliente->id); ?>" class="btn btn-dark d-block mb-3 w-100" data-toggle="tooltip" data-placement="top" title="Eliminar Cliente"  ><img src="<?php echo e('/images/eliminar.png'); ?>" alt="" ></button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

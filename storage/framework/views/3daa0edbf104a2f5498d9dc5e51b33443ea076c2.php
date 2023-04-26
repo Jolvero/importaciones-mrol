@@ -1,14 +1,14 @@
 <?php $__env->startSection('scripts'); ?>
-<script src="<?php echo e(asset('js/registrarUsuario.js')); ?>" defer></script>
-
+    <script src="<?php echo e(asset('js/registrarUsuario.js')); ?>" defer></script>
+    <script src="<?php echo e(asset('js/alertas.js')); ?>" defer></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php if(session('mensaje')): ?>
-    <div class="alert alert-success" role="alert">
-        <?php echo e(session('mensaje')); ?>
+    <?php if(session('mensaje')): ?>
+        <div class="alert alert-success text-center" role="alert">
+            <?php echo e(session('mensaje')); ?>
 
-    </div>
-<?php endif; ?>
+        </div>
+    <?php endif; ?>
     <h1 class="font-weight-bold ml-5 ml-md-0">Usuarios</h1>
 
     <div class="row justify-content-end mt-4">
@@ -17,40 +17,43 @@
 
         <!-- Modal -->
 
-        <div class="modal fade" id="nuevousuario" tabindex="-1" data-keyboard="false" aria-hidden="true" aria-labelledby="nuevousuarioLabel"
-            data-backdrop="static">
+        <div class="modal fade" id="nuevousuario" tabindex="-1" data-keyboard="false" aria-hidden="true"
+            aria-labelledby="nuevousuarioLabel" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 >Agregar Usuario</h2>
+                        <h2>Agregar Usuario</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="close"><span
                                 aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
                     <div class="modal-body">
-                        <form action="<?php echo e(route('usuario.store')); ?>" method="POST" novalidate id="form-usuario" name="form-usuario">
+                        <form action="<?php echo e(route('usuario.store')); ?>" method="POST" novalidate id="form-usuario"
+                            name="form-usuario">
                             <?php echo csrf_field(); ?>
-
+                            <p class="text-center font-weight-bold">Todos los campos son obligatorios</p>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['nombre'];
+                                        <label for="name">Nombre</label>
+                                        <input type="text" class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('nombre')); ?>" name="nombre" id="nombre">
+unset($__errorArgs, $__bag); ?>"
+                                            value="<?php echo e(old('name')); ?>" name="name" id="name">
 
-                                        <?php $__errorArgs = ['nombre'];
+                                        <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
+                                            <span class="invalid-feedback"
+                                                role="alert"><strong><?php echo e($message); ?></strong></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -68,14 +71,16 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('username')); ?>" name="username" id="username">
+unset($__errorArgs, $__bag); ?>"
+                                            value="<?php echo e(old('username')); ?>" name="username" id="username">
 
                                         <?php $__errorArgs = ['username'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
+                                            <span class="invalid-feedback"
+                                                role="alert"><strong><?php echo e($message); ?></strong></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -86,22 +91,24 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Correo</label>
-                                    <input type="email" class="form-control <?php $__errorArgs = ['email'];
+                                        <input type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="email" id="email">
+unset($__errorArgs, $__bag); ?>"
+                                            name="email" id="email">
 
-                                    <?php $__errorArgs = ['email'];
+                                        <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
-                                    <?php unset($message);
+                                            <span class="invalid-feedback"
+                                                role="alert"><strong><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
@@ -111,7 +118,8 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="rol_id">Rol</label>
-                                    <select name="rol_id" id="rol_id" class="form-control <?php $__errorArgs = ['rol_id'];
+                                        <select name="rol_id" id="rol_id"
+                                            class="form-control <?php $__errorArgs = ['rol_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -119,19 +127,23 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                        <option value="">-- Seleccione --</option>
-                                        <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rol): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($rol->id); ?>" <?php echo e(old('rol_id') == $rol->id ? 'selected' : ''); ?>><?php echo e($rol->rol); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
+                                            <option value="">-- Seleccione --</option>
+                                            <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rol): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($rol->id); ?>"
+                                                    <?php echo e(old('rol_id') == $rol->id ? 'selected' : ''); ?>><?php echo e($rol->rol); ?>
 
-                                    <?php $__errorArgs = ['rol_id'];
+                                                </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+
+                                        <?php $__errorArgs = ['rol_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
-                                <?php unset($message);
+                                            <span class="invalid-feedback"
+                                                role="alert"><strong><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
@@ -143,22 +155,23 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control <?php $__errorArgs = ['password'];
+                                        <input type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="password" name="password">
+unset($__errorArgs, $__bag); ?>"
+                                            id="password" name="password">
 
-                                    <?php $__errorArgs = ['password'];
+                                        <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <span class="invalid-feedback"><strong><?php echo e($message); ?></strong></span>
-                                    <?php unset($message);
+                                            <span class="invalid-feedback"><strong><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
@@ -168,22 +181,24 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password_confirmation">Confirmar</label>
-                                    <input type="password" class="form-control <?php $__errorArgs = ['password_confirmation'];
+                                        <input type="password"
+                                            class="form-control <?php $__errorArgs = ['password_confirmation'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="password_confirmation" id="password_confirmation">
+unset($__errorArgs, $__bag); ?>"
+                                            name="password_confirmation" id="password_confirmation">
 
-                                    <?php $__errorArgs = ['password_confirmation'];
+                                        <?php $__errorArgs = ['password_confirmation'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                        <span class="invalid-feedback"><strong><?php echo e($message); ?></strong></span>
-                                    <?php unset($message);
+                                            <span class="invalid-feedback"><strong><?php echo e($message); ?></strong></span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
@@ -206,16 +221,16 @@ unset($__errorArgs, $__bag); ?>
 
     <div class="container mt-5">
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-usuarios">
-            <thead>
-            <tr class="text-center">
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Usuario</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+            <thead class="bg-primary">
+                <tr class="text-center text-white">
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
 
             <tbody>
                 <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -226,7 +241,9 @@ unset($__errorArgs, $__bag); ?>
                         <td><?php echo e($usuario->email); ?></td>
                         <td><?php echo e($usuario->rol->rol); ?></td>
                         <td>
-                            <eliminar-usuario usuario-id=<?php echo e($usuario->id); ?>></eliminar-usuario>
+
+                            <a href="<?php echo e(route('user.edit', ['user' => $usuario->id])); ?>" class="btn my-2 d-block "
+                                style="background: #c3c3c3;"><img src="<?php echo e('/images/editar.png'); ?>" alt=""></a>
 
                         </td>
                     </tr>

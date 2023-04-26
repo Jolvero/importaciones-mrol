@@ -80,10 +80,11 @@
                     <form enctype="multipart/form-data" class="text-dark form-create" id="formulario" method="POST"
                         action="<?php echo e(route('embarques.store')); ?>" novalidate>
                         <?php echo csrf_field(); ?>
+                        <p>Campos obligatorios  <span class="text-danger">*</span></p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="cliente_id">Cliente</label>
+                                    <label for="cliente_id">Cliente <span class="text-danger">*</span></label>
                                     <select name="cliente_id" class="form-control <?php $__errorArgs = ['cliente_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -104,7 +105,7 @@ unset($__errorArgs, $__bag); ?>"
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="tipo_id">Tipo de Importación</label>
+                                    <label for="tipo_id">Tipo de Importación <span class="text-danger">*</span></label>
                                     <select name="tipo_id" id="tipo_id"
                                         class="form-control <?php $__errorArgs = ['tipo_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -126,7 +127,7 @@ unset($__errorArgs, $__bag); ?>">
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="mes_id">Mes</label>
+                                    <label for="mes_id">Mes <span class="text-danger">*</span></label>
                                     <select name="mes_id" id="mes_id" class="form-control">
                                         <?php $__currentLoopData = $obtenerMeses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option
@@ -139,7 +140,7 @@ unset($__errorArgs, $__bag); ?>">
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="referencia">Referencia</label>
+                                    <label for="referencia">Referencia <span class="text-danger">*</span></label>
                                     <input type="text" name="referencia"
                                         class="form-control <?php $__errorArgs = ['referencia'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -166,7 +167,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="estado_id">Estado</label>
+                                    <label for="estado_id">Estado <span class="text-danger">*</span></label>
                                     <select name="estado_id" class="form-control <?php $__errorArgs = ['estado_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -190,7 +191,7 @@ unset($__errorArgs, $__bag); ?>"
                             ?>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="prealertado">Prealertado</label>
+                                    <label for="prealertado">Prealertado <span class="text-danger">*</span></label>
                                     <input class="form-control <?php $__errorArgs = ['prealertado'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -218,7 +219,7 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="documentacion_id">Estatus de Documentación</label>
+                                    <label for="documentacion_id">Estatus de Documentación <span class="text-danger">*</span></label>
                                     <select name="documentacion_id"
                                         class="form-control <?php $__errorArgs = ['documentacion_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -241,7 +242,7 @@ unset($__errorArgs, $__bag); ?>"
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="documentacion">Fecha Documentación</label>
+                                    <label for="documentacion">Fecha Documentación <span class="text-danger">*</span></label>
                                     <input type="date" name="documentacion" id="documentacion"
                                         class="form-control <?php $__errorArgs = ['documentacion'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -267,7 +268,7 @@ unset($__errorArgs, $__bag); ?>
                             <div class="col-md-12 mb-5">
                                 <div class="mb-4 shadow">
                                     <label for="files"
-                                        class="block text-dark text-sm font-weight-bold ml-2 my-3 form-control">Documentación</label>
+                                        class="block text-dark text-sm font-weight-bold ml-2 my-3 form-control">Documentación <span class="text-danger">*</span></label>
                                     <input type="file" id="files" class="p-3 rounded form-input " name="files[]"
                                         multiple />
                                 </div>
@@ -277,7 +278,7 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="arribo">Arribo</label>
+                                    <label for="arribo">Arribo <span class="text-danger">*</span></label>
                                     <input class="form-control <?php $__errorArgs = ['arribo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -532,32 +533,8 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 
-    <form action="<?php echo e(route('buscarEmbarques.show')); ?>"class="container mb-5" id="buscar">
-
-        <div class="row h-100 align-items-center mt-2 ml-3 ml-md-0 justify-content-center" data-aos="fade-down"
-            data-aos-duration="1000">
-            <div class="col-md-6">
-                <p class="buscar display-4 mb-4 ml-5">Buscar Importación</p>
-                <input type="search" name="buscarEmbarque" class="form-control mt-5 ml-5"
-                    placeholder="Buscar Importación">
-            </div>
-        </div>
-        <p class="ml-5 mt-5">Filtrar Importaciones</p>
-        <div class="form-group ml-5 ml-md-4">
-            <select name="clientes_filtro" id="clientes_filtro" class="form-control w-25">
-                <option value="">-- Todas --</option>
-                <?php $__currentLoopData = $clientes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cliente): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($cliente->id); ?>"><?php echo e($cliente->cliente); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </select>
-
-
-        </div>
-    </form>
-
-
+    <h1 class="text-center font-weight-bold text-uppercase mb-5">Importaciones</h1>
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="text-center my-5 ">Administra tus Importaciones</h2>
 
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table">
             <thead class="bg-primary text-light">
@@ -577,10 +554,16 @@ unset($__errorArgs, $__bag); ?>
                         <td class="font-weight-bold"><?php echo e($embarque->estado->nombre); ?></td>
                         <td>
                             <a href="<?php echo e(route('embarques.show', ['embarque' => $embarque->id])); ?>"
-                                class="btn btn-primary d-block mb-2" id="ver">Ver</a>
-                            <a href="<?php echo e(route('embarques.edit', ['embarque' => $embarque->id])); ?>"
-                                class="btn btn-dark d-block mb-2" id="editar">Editar</a>
-                            <eliminar-embarque embarque-id=<?php echo e($embarque->id); ?>></eliminar-embarque>
+                                class="btn d-block mb-2" style="background: #c3c3c3" id="ver"><img src="<?php echo e('/images/show.png'); ?>" data-toggle="tooltip" data-placement="top" title="Ver Importación" alt=""></a>
+
+                            <a href="<?php echo e(route('embarques.edit', ['embarque' => $embarque->id])); ?>" data-toggle="tooltip" data-placement="top" title="Editar Importación"
+                                class="btn d-block mb-2" style="background: #c3c3c3" id="editar"><img src="<?php echo e('/images/editar.png'); ?>" alt=""></a>
+
+                                <form method="POST" id="eliminar-embarque">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="button" class="btn btn-dark d-block mb-2 w-100" id="<?php echo e($embarque->id); ?>" data-toggle="tooltip" data-placement="top" title="Eliminar Importación" onclick="eliminarEmbarque(<?php echo e($embarque->id); ?>);">  <img src="<?php echo e('/images/eliminar.png'); ?>" alt=""></button>
+                                </form>
 
                         </td>
                     </tr>

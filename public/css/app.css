@@ -12002,7 +12002,7 @@ Item
 /*for animation*/
 
 .dropdown-toggle:after {
-  transition: 0.7s;
+  transition: 0.3s;
 }
 
 .spinner-section {

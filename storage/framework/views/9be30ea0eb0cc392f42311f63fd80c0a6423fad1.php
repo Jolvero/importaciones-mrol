@@ -181,13 +181,12 @@
             <form enctype="multipart/form-data" method="POST" class="text-dark form-edit"
                 action="<?php echo e(route('embarques.update', ['embarque' => $embarque->id])); ?>" id="formulario" novalidate>
                 <?php echo csrf_field(); ?>
-
                 <?php echo method_field('PUT'); ?>
-
+                <p>Campos obligatorios  <span class="text-danger">*</span></p>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="cliente_id">Cliente</label>
+                            <label for="cliente_id">Cliente <span class="text-danger">*</span></label>
                             <select name="cliente_id" class="form-control <?php $__errorArgs = ['cliente_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -210,7 +209,7 @@ unset($__errorArgs, $__bag); ?>"
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="tipo_id">Tipo Importación</label>
+                            <label for="tipo_id">Tipo Importación <span class="text-danger">*</span></label>
                             <select name="tipo_id" id="tipo_id"
                                 class="form-control <?php $__errorArgs = ['tipo_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -232,7 +231,7 @@ unset($__errorArgs, $__bag); ?>">
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="mes_id">Mes</label>
+                            <label for="mes_id">Mes <span class="text-danger">*</span></label>
                             <select name="mes_id" id="mes_id" class="form-control">
                                 <option value="">-- Seleccione --</option>
                                 <?php $__currentLoopData = $obtenerMeses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -246,7 +245,7 @@ unset($__errorArgs, $__bag); ?>">
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="referencia">Referencia</label>
+                            <label for="referencia">Referencia <span class="text-danger">*</span></label>
                             <input type="text" name="referencia"
                                 class="form-control <?php $__errorArgs = ['referencia'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -275,7 +274,7 @@ unset($__errorArgs, $__bag); ?>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="estado_id">Estado</label>
+                            <label for="estado_id">Estado <span class="text-danger">*</span></label>
                             <select name="estado_id" class="form-control <?php $__errorArgs = ['estado_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -299,7 +298,7 @@ unset($__errorArgs, $__bag); ?>"
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="prealertado"></label>Prealertado
+                            <label for="prealertado"></label>Prealertado <span class="text-danger">*</span>
                             <input class="form-control mt-2 <?php $__errorArgs = ['prealertado'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -327,7 +326,7 @@ unset($__errorArgs, $__bag); ?>
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label for="documentacion_id">Estatus Documentación</label>
+                            <label for="documentacion_id">Estatus Documentación <span class="text-danger">*</span></label>
                             <select name="documentacion_id"
                                 class="form-control <?php $__errorArgs = ['documentacion_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -351,7 +350,7 @@ unset($__errorArgs, $__bag); ?>"
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="documentacion">Fecha Documentación</label>
+                            <label for="documentacion">Fecha Documentación <span class="text-danger">*</span></label>
                             <input type="date" name="documentacion" id="documentacion"
                                 class="form-control <?php $__errorArgs = ['documentacion'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -378,7 +377,7 @@ unset($__errorArgs, $__bag); ?>
                     <div class="col-md-12">
                         <div class="mb-4 ">
                             <label for="file_id"
-                                class="block text-dark text-sm font-weight-bold  mb-4 ml-2">Documentación</label>
+                                class="block text-dark text-sm font-weight-bold  mb-4 ml-2">Documentación <span class="text-danger">*</span></label>
                             <input type="file" id="files" data-tipo="editar" class="p-3 rounded form-input "
                                 name="files[]" multiple />
                         </div>
@@ -420,7 +419,7 @@ unset($__errorArgs, $__bag); ?>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="arribo"></label>Arribo
+                            <label for="arribo"></label>Arribo <span class="text-danger">*</span>
                             <input class="form-control mt-2 <?php $__errorArgs = ['arribo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

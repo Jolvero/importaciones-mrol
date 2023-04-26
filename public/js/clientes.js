@@ -4,7 +4,8 @@ $('#formulario-clientes').on('submit', function validarFormulario() {
     if(cliente == null || cliente == 0 || /^\+$/.test(cliente)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo cliente es requerido'
+            text: 'El campo cliente es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -56,6 +57,58 @@ if(tablaClientes) {
 ]
     }
     )};
+
+    function eliminarCliente(id) {
+        const cliente = document.getElementById(id);
+
+        Swal.fire({
+            title: 'Eliminar',
+            text: '¿Deseas eliminar el cliente?, una vez eliminado ya no se podrá recuperar',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#605f5f',
+            confirmButtonText: 'Si',
+            confirmButtonColor: '#722f37',
+            icon: 'warning',
+            allowEscapeKey: false,
+            allowOutsideClick: false
+        }).then((result)=> {
+            if(result.value) {
+                Swal.fire({
+                    title: 'Eliminar',
+                    text: 'Eliminando Cliente',
+                    icon: 'info',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    didOpen:()=> {
+                        Swal.showLoading()
+                    }
+                });
+
+                $.ajax({
+                    url: `/clientes/eliminar/${id}`,
+                    method: 'DELETE',
+                    data:{
+                        id: id,
+                        _token: $('input[name="_token"]').val()
+                    }
+                }).done(function() {
+                    Swal.fire({
+                        title: 'Eliminar',
+                        text: 'Cliente eliminado',
+                        icon: 'success',
+                        allowEscapeKey: false,
+                        allowOutsideClick: false
+                    })
+                })
+
+                cliente.parentElement.parentElement.parentElement.remove()
+            $('.child').remove();
+            }
+        })
+    }
+
+
 
 
 

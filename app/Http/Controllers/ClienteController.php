@@ -131,29 +131,28 @@ class ClienteController extends Controller
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
             if ($cliente->cliente == $request['cliente']) {
                 return back()->with('validacion', 'El cliente ya existe');
-            } else {
-                $data = $request->validate([
-                    'cliente' => 'required',
-                    'rfc' => 'nullable',
-                    'direccion' => 'nullable'
-                ]);
-
-                if ($request['rfc'] != null) {
-                    $data['rfc'] = Crypt::encryptString($data['rfc']);
-                }
-
-                if ($request['direccion'] != null) {
-                    $data['direccion'] = Crypt::encryptString($data['direccion']);
-                }
-                $data['cliente'] = Crypt::encryptString($data['cliente']);
-                $cliente = new Cliente($data);
-                $cliente->save();
-
-                return redirect()->action('ClienteController@index');
             }
+
         }
 
-        //
+        $data = $request->validate([
+            'cliente' => 'required',
+            'rfc' => 'nullable',
+            'direccion' => 'nullable'
+        ]);
+
+        if ($request['rfc'] != null) {
+            $data['rfc'] = Crypt::encryptString($data['rfc']);
+        }
+
+        if ($request['direccion'] != null) {
+            $data['direccion'] = Crypt::encryptString($data['direccion']);
+        }
+        $data['cliente'] = Crypt::encryptString($data['cliente']);
+        $cliente = new Cliente($data);
+        $cliente->save();
+
+        return redirect()->action('ClienteController@index')->with('success', 'Cliente Registrado exitosamente');
 
     }
 

@@ -58,7 +58,8 @@ $('#formulario').on('submit', function validarFormulario() {
     if(tipoImportacion == null || tipoImportacion == 0 || /^\+$/.test(tipoImportacion)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo Tipo de Importación es requerido'
+            text: 'El campo Tipo de Importación es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -68,7 +69,8 @@ $('#formulario').on('submit', function validarFormulario() {
     if(mes_id == null || mes_id == 0 || /^\+$/.test(mes_id)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo Mes es requerido'
+            text: 'El campo Mes es requerido',
+            icon: 'error'
         })
 
         return false;
@@ -79,7 +81,8 @@ $('#formulario').on('submit', function validarFormulario() {
     if(referencia == null || referencia == 0 || /^\+$/.test(referencia)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo Referencia es requerido'
+            text: 'El campo Referencia es requerido',
+            icon: 'error'
         })
         return false;
 
@@ -90,7 +93,8 @@ $('#formulario').on('submit', function validarFormulario() {
     if(estado_id == null || estado_id == 0 || /^\+$/.test(estado_id)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo Estado es requerido'
+            text: 'El campo Estado es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -100,7 +104,8 @@ $('#formulario').on('submit', function validarFormulario() {
     if(prealertado == null || prealertado == 0 || /^\+$/.test(prealertado)) {
         Swal.fire({
             title: 'validación',
-            text: 'la fecha de prealerta es requerida'
+            text: 'la fecha de prealerta es requerida',
+            icon: 'error'
         })
         return false;
     }
@@ -110,7 +115,19 @@ $('#formulario').on('submit', function validarFormulario() {
     if(documentacion_id == null || documentacion_id == 0 || /^\+$/.test(documentacion_id)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo documentacion es requerido'
+            text: 'El campo estatus documentacion es requerido',
+            icon: 'error'
+        })
+        return false;
+    }
+
+    const fecha_documentacion = document.getElementById('documentacion').value;
+
+    if(fecha_documentacion == null || fecha_documentacion == 0 || /^\+$/.test(fecha_documentacion)) {
+        Swal.fire({
+            title: 'validación',
+            text: 'El campo fecha documentacion es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -133,7 +150,8 @@ $('#formulario').on('submit', function validarFormulario() {
     if(arribo == null || arribo == 0 || /^\+$/.test(arribo)) {
         Swal.fire({
             title: 'validación',
-            text: 'El campo arribo es requerido'
+            text: 'El campo arribo es requerido',
+            icon: 'error'
         })
         return false;
     }
@@ -144,7 +162,8 @@ $('#formulario').on('submit', function validarFormulario() {
 
         Swal.fire({
             title: 'validación',
-            text: 'la fecha despacho debe ser posterior a Arribo'
+            text: 'la fecha despacho debe ser posterior a Arribo',
+            icon: 'error'
         })
         return false;
     }
@@ -157,7 +176,8 @@ $('#formulario').on('submit', function validarFormulario() {
 
             Swal.fire({
                 title: 'validación',
-                text: 'la fecha Cuenta de gastos debe ser posterior a Arribo y a previo'
+                text: 'la fecha Cuenta de gastos debe ser posterior a Arribo y a previo',
+                icon: 'error'
             })
             return false;
         }
@@ -167,7 +187,8 @@ $('#formulario').on('submit', function validarFormulario() {
         if(arribo == previo) {
             Swal.fire({
                 title: 'validación',
-                text: 'la fecha de previo debe ser posterior a Arribo'
+                text: 'la fecha de previo debe ser posterior a Arribo',
+                icon: 'error'
             })
             return false;
         }
@@ -298,3 +319,51 @@ $('#clientes_filtro').on('change', function filtrar() {
 
 
 })
+
+function eliminarEmbarque(id) {
+    const elemento = document.getElementById(id);
+    Swal.fire({
+        title: 'Eliminar',
+        text: '¿Deseas eliminar la importación?, una vez eliminada ya no se podrá recuperar',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: '#605f5f',
+        confirmButtonText: 'Si',
+        confirmButtonColor: '#722f37',
+        icon: 'warning',
+        allowEscapeKey: false,
+        allowOutsideClick: false
+    }).then((result)=> {
+        if(result.value) {
+            Swal.fire({
+                title: 'Eliminar',
+                text: 'Eliminando Importación',
+                icon: 'info',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                didOpen:()=> {
+                    Swal.showLoading()
+                }
+            });
+            $.ajax({
+                url: `/embarques/${id}/eliminar`,
+                method: 'DELETE',
+                data:{
+                    id: id,
+                    _token: $('input[name="_token"]').val()
+                }
+            }).done(function() {
+                Swal.fire({
+                    title: 'Eliminar',
+                    text: 'Importación eliminada',
+                    icon: 'success',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false
+                })
+            })
+
+            elemento.parentElement.parentElement.parentElement.remove()
+            $('.child').remove();
+        }
+    })
+}

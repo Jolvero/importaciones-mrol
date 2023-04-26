@@ -182,13 +182,12 @@
             <form enctype="multipart/form-data" method="POST" class="text-dark form-edit"
                 action="{{ route('embarques.update', ['embarque' => $embarque->id]) }}" id="formulario" novalidate>
                 @csrf
-
                 @method('PUT')
-
+                <p>Campos obligatorios  <span class="text-danger">*</span></p>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="cliente_id">Cliente</label>
+                            <label for="cliente_id">Cliente <span class="text-danger">*</span></label>
                             <select name="cliente_id" class="form-control @error('cliente_id') is-invalid @enderror"
                                 id="cliente_id">
                                 <option value="">-- Seleccione --</option>
@@ -203,7 +202,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="tipo_id">Tipo Importación</label>
+                            <label for="tipo_id">Tipo Importación <span class="text-danger">*</span></label>
                             <select name="tipo_id" id="tipo_id"
                                 class="form-control @error('tipo_id') is-invalid @enderror">
                                 <option value="">-- Seleccione --</option>
@@ -218,7 +217,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="mes_id">Mes</label>
+                            <label for="mes_id">Mes <span class="text-danger">*</span></label>
                             <select name="mes_id" id="mes_id" class="form-control">
                                 <option value="">-- Seleccione --</option>
                                 @foreach ($obtenerMeses as $mes)
@@ -232,7 +231,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="referencia">Referencia</label>
+                            <label for="referencia">Referencia <span class="text-danger">*</span></label>
                             <input type="text" name="referencia"
                                 class="form-control @error('referencia') is-invalid @enderror" id="referencia"
                                 placeholder="Referencia" value="{{ $embarque->referencia }}">
@@ -247,7 +246,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="estado_id">Estado</label>
+                            <label for="estado_id">Estado <span class="text-danger">*</span></label>
                             <select name="estado_id" class="form-control @error('estado_id') is-invalid @enderror"
                                 id="estado_id">
                                 <option value="">-- Seleccione --</option>
@@ -263,7 +262,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="prealertado"></label>Prealertado
+                            <label for="prealertado"></label>Prealertado <span class="text-danger">*</span>
                             <input class="form-control mt-2 @error('prealertado') is-invalid @enderror" type="date"
                                 name="prealertado" id="prealertado" value="{{ $embarque->prealertado }}">
                             @error('prealertado')
@@ -277,7 +276,7 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label for="documentacion_id">Estatus Documentación</label>
+                            <label for="documentacion_id">Estatus Documentación <span class="text-danger">*</span></label>
                             <select name="documentacion_id"
                                 class="form-control @error('documentacion_id') is-invalid @enderror"
                                 id="documentacion_id">
@@ -294,7 +293,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="documentacion">Fecha Documentación</label>
+                            <label for="documentacion">Fecha Documentación <span class="text-danger">*</span></label>
                             <input type="date" name="documentacion" id="documentacion"
                                 class="form-control @error('documentacion') is-invalid @enderror"
                                 value="{{ $embarque->documentacion }}">
@@ -307,7 +306,7 @@
                     <div class="col-md-12">
                         <div class="mb-4 ">
                             <label for="file_id"
-                                class="block text-dark text-sm font-weight-bold  mb-4 ml-2">Documentación</label>
+                                class="block text-dark text-sm font-weight-bold  mb-4 ml-2">Documentación <span class="text-danger">*</span></label>
                             <input type="file" id="files" data-tipo="editar" class="p-3 rounded form-input "
                                 name="files[]" multiple />
                         </div>
@@ -335,7 +334,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="arribo"></label>Arribo
+                            <label for="arribo"></label>Arribo <span class="text-danger">*</span>
                             <input class="form-control mt-2 @error('arribo') is-invalid @enderror" type="date"
                                 name="arribo" id="arribo" value="{{ $embarque->arribo }}">
                             @error('arribo')

@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script src="{{asset('js/clientes.js')}}" defer></script>
+@endsection
+
 @section('content')
     <h1 class="font-weight-bold ml-5 ml-md-0">Editar Cliente</h1>
 
-    <form action="{{ route('cliente.update', ['cliente' => $cliente->id]) }}" method="POST">
+    <form action="{{ route('cliente.update', ['cliente' => $cliente->id]) }}" method="POST" id="formulario-clientes" class="ml-5 ml-md-0">
         @method('PUT')
         @csrf
-
+        <p class="font-weight-bold text-center">Campos obligatorios <span class="text-danger">*</span></p>
         <div class="form-group mt-4">
-            <label for="cliente">Cliente</label>
+            <label for="cliente">Cliente <span class="text-danger">*</span></label>
             <input type="text" name="cliente" id="cliente" class="form-control @error('cliente') is-invalid @enderror"
                 value="{{ $cliente->cliente }}">
 

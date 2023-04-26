@@ -15,6 +15,11 @@ class FileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+        $this->middleware('auth');
+     }
     public function index()
     {
         //
@@ -66,6 +71,11 @@ class FileController extends Controller
     {
         //
     }
+
+    // public function documentosTemporales($id)
+    // {
+    //     return redirect('/storage/documentos-temporales')
+    // }
 
     /**
      * Update the specified resource in storage.
