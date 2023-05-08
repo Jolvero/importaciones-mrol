@@ -494,8 +494,6 @@ class EmbarqueController extends Controller
         $embarque->uuid_cta_gastos = $embarque->uuid_cta_gastos;
         $embarque->save();
 
-
-
         if ($embarque->estado_id == 4 && $request['cliente_id'] == 2) {
             // validar si el usuario ha subido fotos
             $validarFotos = Imagen::where('id_embarque', $embarque->uuid)->count();

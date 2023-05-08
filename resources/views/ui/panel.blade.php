@@ -1,6 +1,5 @@
 @if (Auth::user()->rol_id == 1)
 
-
 <div style="margin-top: 4.1rem" id="sidemenu" data-aos="fade-down" data-aos-duration="1000" class="menu-collapsed">
     <div id="header">
         <div id="title">
