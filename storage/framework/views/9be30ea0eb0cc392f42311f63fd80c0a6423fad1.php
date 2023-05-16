@@ -228,15 +228,24 @@ unset($__errorArgs, $__bag); ?>">
                             </select>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="mes_id">Mes <span class="text-danger">*</span></label>
-                            <select name="mes_id" id="mes_id" class="form-control">
+
+
+                            <select name="mes_id" id="mes_id" class="form-control <?php $__errorArgs = ['mes_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
                                 <option value="">-- Seleccione --</option>
-                                <?php $__currentLoopData = $obtenerMeses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option
-                                        value="<?php echo e($mes->id); ?>"<?php echo e($embarque->mes_id == $mes->id ? 'selected' : ''); ?>>
+                                <?php $__currentLoopData = $meses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($mes->id); ?>"
+                                        <?php echo e($embarque->mes_id == $mes->id ? 'selected' : ''); ?>>
                                         <?php echo e($mes->mes); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
@@ -420,7 +429,7 @@ unset($__errorArgs, $__bag); ?>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="arribo"></label>Arribo <span class="text-danger">*</span>
-                            <input class="form-control mt-2 <?php $__errorArgs = ['arribo'];
+                            <input class="form-control mt-1 <?php $__errorArgs = ['arribo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -446,8 +455,8 @@ unset($__errorArgs, $__bag); ?>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="revalidación">Revalidación</label>
-                            <input class="form-control <?php $__errorArgs = ['revalidación'];
+                            <label  for="revalidación">Revalidación</label>
+                            <input class="form-control mt-1 <?php $__errorArgs = ['revalidación'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

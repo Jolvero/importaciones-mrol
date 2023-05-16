@@ -1,5 +1,6 @@
 <?php $__env->startSection('scripts'); ?>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="<?php echo e(asset('js/table-clientes-embarques.js')); ?>" defer></script>
 <script>
     AOS.init();
   </script>
@@ -13,24 +14,14 @@
 
 <?php $__env->startSection('content'); ?>
 
-<h1 class="mb-5">Bienvenido/a <?php echo e(Auth::user()->name); ?></h1>
-<div class="hero"  data-aos="fade-up" data-aos-duration="1000">
-    <form action="<?php echo e(route('cliente.buscar')); ?>" class="container h-100">
-        <div class="row h-100 align-items-center mt-4 justify-content-center">
-           <div class="col-md-6 texto-buscar">
-            <p class="display-4 mb-4">Buscar Importación</p>
+<h1 class="mb-5 font-weight-bold">Bienvenido/a <?php echo e(Auth::user()->name); ?></h1>
 
-            <input type="search" name="buscar" class="form-control mt-5" placeholder="Buscar Importación">
-           </div>
-        </div>
-    </form>
-</div>
 
 <div class="importaciones-cliente">
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center my-5 pt-4">Consulta tus Importaciones</h2>
 
-        <table class="table bg-white">
+        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-clientes-embarques">
             <thead class="bg-primary text-light">
                 <tr>
                     <th scole="col">Referencia</th>
@@ -54,10 +45,7 @@
             </tbody>
         </table>
 
-        <div class="col-12 d-flex mt-4 justify-content-center">
-        <?php echo e($embarquesCliente->links()); ?>
 
-    </div>
     </div>
 </div>
 

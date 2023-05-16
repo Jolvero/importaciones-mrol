@@ -10,16 +10,11 @@ function eventListeners() {
     cliente.addEventListener('change', validarCampos)
 
 }
-
-
-
 function validarCampos() {
-    if($('#mes').val() != 0 && $('#tipo').val() != 0 && $('#cliente').val()!=0 ) {
+    if ($('#mes').val() != 0 && $('#tipo').val() != 0 && $('#cliente').val() != 0) {
         $('#kpis').children().remove()
         kpis()
-
         vaciarCampos();
-
     }
 }
 
@@ -30,71 +25,67 @@ function vaciarCampos() {
 }
 
 function kpis() {
-    $.get('/kpis/'+ $('#mes').val()+ '/'+ $('#tipo').val()+ '/'+ $('#cliente').val(), function(data) {
-        $('#kpis').children().remove()
+    $.get('/kpis/' + $('#mes').val() + '/' + $('#tipo').val() + '/' + $('#cliente').val(), function (data) {
 
-        if(data[0].length>0 || data[1].length> 0 || data[2].length > 0 || data[3].length> 0) {
-
-            console.log(data)
+        if (data[0].length > 0 || data[1].length > 0 || data[2].length > 0 || data[3].length > 0) {
             let referencias = [];
-            for(let i = 0; i < data[3].length; ++i) {
+            for (let i = 0; i < data[3].length; ++i) {
                 referencias.push(data[3][i])
             }
-
             var options = {
                 series: [{
-                name: 'Doc-Arribo',
-                data: data[0]
-              }, {
-                name: 'Arribo-Despacho',
-                data: data[1]
-              }, {
-                name: 'Despacho-CG',
-                data: data[2]
-              }, ],
+                    name: 'Doc-Arribo',
+                    data: data[0]
+                }, {
+                    name: 'Arribo-Despacho',
+                    data: data[1]
+                }, {
+                    name: 'Despacho-CG',
+                    data: data[2]
+                },],
                 chart: {
-                type: 'bar',
-                height: 450
-              },
-              plotOptions: {
-                bar: {
-                  horizontal: false,
-                  columnWidth: '55%',
-                  endingShape: 'rounded'
+                    type: 'bar',
+                    height: 450
                 },
-              },
-              dataLabels: {
-                enabled: false
-              },
-              stroke: {
-                show: true,
-                width: 2,
-                colors: ['transparent']
-              },
-              xaxis: {
-                categories: referencias,
-              },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '55%',
+                        endingShape: 'rounded'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: referencias,
+                },
 
-              fill: {
-                opacity: 1
-              },
+                fill: {
+                    opacity: 1
+                },
 
-              };
+            };
 
-              var chart = new ApexCharts(document.querySelector("#kpis"), options);
-              chart.render();
-              referencias = [];
-          } else {
+            var chart = new ApexCharts(document.querySelector("#kpis"), options);
+            chart.render();
+            referencias = [];
+        } else {
             $('.mensaje').children().remove();
             $('.mensaje').append('<h2 class="text-center font-weight-bold">No se encontraron Resultados</h2>')
-            setTimeout(()=> {
+            setTimeout(() => {
                 $('.mensaje').children().remove();
-            },3000)
-          }
+            }, 3000)
         }
-      )
-
     }
+    )
+
+}
 
 
 

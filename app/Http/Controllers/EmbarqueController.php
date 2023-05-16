@@ -6,6 +6,7 @@ use App\Kpi;
 use App\File;
 use App\Comida;
 use App\Imagen;
+use ZipArchive;
 use App\Cliente;
 use App\Despacho;
 use App\Embarque;
@@ -17,26 +18,26 @@ use App\CuentaEmbarque;
 use App\EstadoEmbarque;
 use App\DespachoProceso;
 use App\EstatusDespacho;
+use App\Mail\PrevioVivo;
 use App\ElementoDespacho;
+use App\Mail\DespachoMail;
+use App\Mail\ProformaMail;
 use App\ProformaPedimento;
 use App\Policies\KpiPolicy;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DocumentacionEmbarque;
 use App\Exports\EmbarquesExport;
-use App\Mail\DespachoMail;
-use App\Mail\PrevioVivo;
-use App\Mail\ProformaMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\File as FacadesFile;
+use Illuminate\Support\Facades\Route;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use ZipArchive;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class EmbarqueController extends Controller
 {
@@ -66,11 +67,15 @@ class EmbarqueController extends Controller
         $clientes = Cliente::all();
         $mes = Carbon::now()->locale('es');
         $mesEspanol = $mes->monthName;
-        $this->authorize('create', $embarque);
         $obtenerMeses = DB::table('meses')->get();
 
         foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
+        }
+
+        foreach($embarques as $embarque)
+        {
+            $embarque->cliente->cliente = Crypt::decryptString($embarque->cliente->cliente);
         }
         //
         // DB::table('estado_embarque')->get()->pluck('nombre', 'id');
@@ -316,7 +321,7 @@ class EmbarqueController extends Controller
         $this->authorize('update', $embarque);
         $clientes = Cliente::all();
         $tipos = DB::table('tipoimportación')->get();
-        $obtenerMeses = DB::table('meses')->get();
+        $meses = DB::table('meses')->get();
         $estados = EstadoEmbarque::all();
         $documentaciones = DocumentacionEmbarque::all();
         $elementosDespachos = Despacho::all();
@@ -332,7 +337,7 @@ class EmbarqueController extends Controller
         }
 
 
-        return view('embarques.edit', compact('clientes', 'tipos', 'obtenerMeses', 'estados', 'documentaciones', 'embarque', 'imagenes', 'files', 'cuentas', 'proforma', 'elementosDespachos'));
+        return view('embarques.edit', compact('clientes', 'tipos', 'meses', 'estados', 'documentaciones', 'embarque', 'imagenes', 'files', 'cuentas', 'proforma', 'elementosDespachos'));
     }
 
     /**

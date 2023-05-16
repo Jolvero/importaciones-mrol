@@ -334,6 +334,9 @@
                             value="{{ Str::uuid()->tostring() }}">
                         <input type="hidden" id="uuid_kpi" name="uuid_kpi" value="{{ Str::uuid()->toString() }}">
 
+                        <input type="hidden" id="url" name="url" value="{{ Route::currentRouteName()}}">
+
+
                         <div class="form-group d-flex justify-content-center" id="section-btn">
                             <input type="submit" class="btn btn-primary mx-auto mt-4" id="agregar-embarque"
                                 name="agregar-embarque" value="Agregar">
@@ -350,7 +353,9 @@
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table">
             <thead class="bg-primary text-light">
                 <tr>
+                    <th scole="col">#</th>
                     <th scole="col">Referencia</th>
+                    <th scole="col">Cliente</th>
                     <th scole="col">Estatus</th>
 
                     <th scole="col" class="text-center">Acciones</th>
@@ -361,7 +366,9 @@
 
                 @foreach ($embarques as $embarque)
                     <tr>
+                        <td>{{$embarque->id}}</td>
                         <td>{{ $embarque->referencia }}</td>
+                        <td>{{$embarque->cliente->cliente}}</td>
                         <td class="font-weight-bold">{{ $embarque->estado->nombre }}</td>
                         <td>
                             <a href="{{ route('embarques.show', ['embarque' => $embarque->id]) }}"

@@ -40,7 +40,7 @@ class EstadosSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('estado_embarques')->insert([
-            'nombre' => 'Despacho',
+            'nombre' => 'Despachado',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);

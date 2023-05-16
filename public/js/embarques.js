@@ -1,5 +1,10 @@
+
+
+
+
+
 const tabla = document.querySelector('table');
-if(tabla) {
+if (tabla) {
     $('#table').DataTable({
         responsive: true,
         colReorder: true,
@@ -24,26 +29,32 @@ if(tabla) {
                 "previous": "Anterior"
             },
 
-},columnDefs: [
-    {
-        className: 'dt-center', targets: '_all'
-        }
-]
+        }, columnDefs: [
+            {
+                className: 'dt-center', targets: '_all'
+            }
+        ]
     }
-    )};
+    )
+};
 
 
 document.addEventListener('DOMContentLoaded', asignarPedimento)
 const mes = new Date();
 const numero = mes.getMonth()
-const acomodar = numero+1;
-$('#mes_id option[value='+acomodar+']').attr('selected', true)
+const acomodar = numero + 1;
+const url = document.querySelector('#url')
+
+if(url) {
+    $('#mes_id option[value=' + acomodar + ']').attr('selected', true)
+}
+
 
 // validación
 $('#formulario').on('submit', function validarFormulario() {
     const cliente_id = document.getElementById('cliente_id').value;
 
-    if(cliente_id == null || cliente_id == 0 || /^\+$/.test(cliente_id)) {
+    if (cliente_id == null || cliente_id == 0 || /^\+$/.test(cliente_id)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo cliente es requerido',
@@ -55,7 +66,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const tipoImportacion = document.getElementById('tipo_id').value;
 
-    if(tipoImportacion == null || tipoImportacion == 0 || /^\+$/.test(tipoImportacion)) {
+    if (tipoImportacion == null || tipoImportacion == 0 || /^\+$/.test(tipoImportacion)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo Tipo de Importación es requerido',
@@ -66,7 +77,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const mes_id = document.getElementById('mes_id').value;
 
-    if(mes_id == null || mes_id == 0 || /^\+$/.test(mes_id)) {
+    if (mes_id == null || mes_id == 0 || /^\+$/.test(mes_id)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo Mes es requerido',
@@ -78,7 +89,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const referencia = document.getElementById('referencia').value;
 
-    if(referencia == null || referencia == 0 || /^\+$/.test(referencia)) {
+    if (referencia == null || referencia == 0 || /^\+$/.test(referencia)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo Referencia es requerido',
@@ -90,7 +101,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const estado_id = document.getElementById('estado_id').value;
 
-    if(estado_id == null || estado_id == 0 || /^\+$/.test(estado_id)) {
+    if (estado_id == null || estado_id == 0 || /^\+$/.test(estado_id)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo Estado es requerido',
@@ -101,7 +112,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const prealertado = document.getElementById('prealertado').value;
 
-    if(prealertado == null || prealertado == 0 || /^\+$/.test(prealertado)) {
+    if (prealertado == null || prealertado == 0 || /^\+$/.test(prealertado)) {
         Swal.fire({
             title: 'validación',
             text: 'la fecha de prealerta es requerida',
@@ -112,7 +123,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const documentacion_id = document.getElementById('documentacion_id').value;
 
-    if(documentacion_id == null || documentacion_id == 0 || /^\+$/.test(documentacion_id)) {
+    if (documentacion_id == null || documentacion_id == 0 || /^\+$/.test(documentacion_id)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo estatus documentacion es requerido',
@@ -123,7 +134,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const fecha_documentacion = document.getElementById('documentacion').value;
 
-    if(fecha_documentacion == null || fecha_documentacion == 0 || /^\+$/.test(fecha_documentacion)) {
+    if (fecha_documentacion == null || fecha_documentacion == 0 || /^\+$/.test(fecha_documentacion)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo fecha documentacion es requerido',
@@ -135,7 +146,7 @@ $('#formulario').on('submit', function validarFormulario() {
     const documentacionArchivos = document.getElementById('files').files.length;
     // validar si el usuario esta editando la importacion y no validar documentacion
     const tipoDocumentacion = document.querySelector('#files').getAttribute('data-tipo');
-    if(documentacionArchivos == 0 && tipoDocumentacion == null ) {
+    if (documentacionArchivos == 0 && tipoDocumentacion == null) {
         Swal.fire({
             title: 'validación',
             text: 'Debes subir los archivos de documentación',
@@ -147,7 +158,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const arribo = document.getElementById('arribo').value;
 
-    if(arribo == null || arribo == 0 || /^\+$/.test(arribo)) {
+    if (arribo == null || arribo == 0 || /^\+$/.test(arribo)) {
         Swal.fire({
             title: 'validación',
             text: 'El campo arribo es requerido',
@@ -158,7 +169,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
     const despacho = document.getElementById('despacho').value;
 
-    if(arribo == despacho) {
+    if (arribo == despacho) {
 
         Swal.fire({
             title: 'validación',
@@ -168,11 +179,22 @@ $('#formulario').on('submit', function validarFormulario() {
         return false;
     }
 
+
+    if (new Date(despacho) < new Date(arribo)) {
+        Swal.fire({
+            title: 'validación',
+            text: 'la fecha Despacho debe ser posterior a Arribo',
+            icon: 'error'
+        })
+        return false;    } else {
+        console.log('f1 < f2')
+    }
+
     const previo = document.getElementById('previo').value;
     const cuenta_gastos = document.getElementById('cuenta_gastos').value;
 
-    if(cuenta_gastos) {
-        if(arribo == cuenta_gastos || cuenta_gastos == previo ) {
+    if (cuenta_gastos) {
+        if (new Date(arribo) >= new Date(cuenta_gastos) || new Date(cuenta_gastos) <= new Date(previo)) {
 
             Swal.fire({
                 title: 'validación',
@@ -183,8 +205,8 @@ $('#formulario').on('submit', function validarFormulario() {
         }
     }
 
-    if(arribo && previo) {
-        if(arribo == previo) {
+    if (arribo && previo) {
+        if (new Date(arribo) > new Date(previo)) {
             Swal.fire({
                 title: 'validación',
                 text: 'la fecha de previo debe ser posterior a Arribo',
@@ -202,7 +224,7 @@ $('#formulario').on('submit', function validarFormulario() {
         icon: 'info',
         allowOutsideClick: false,
         allowEscapeKey: false,
-        didOpen:()=> {
+        didOpen: () => {
             Swal.showLoading()
         }
     })
@@ -214,7 +236,7 @@ $('#formulario').on('submit', function validarFormulario() {
 
 // validar si cliente es vivo y habilitar input de proforma
 const cliente_id = document.querySelector('#cliente_id');
-cliente_id.addEventListener('change',asignarPedimento);
+cliente_id.addEventListener('change', asignarPedimento);
 
 
 function asignarPedimento() {
@@ -224,10 +246,10 @@ function asignarPedimento() {
     // Observaciones
 
     const validarNuevaImportacion = document.querySelector('.nueva-importacion');
-    if($('#cliente_id').val() == 2 && validarNuevaImportacion) {
+    if ($('#cliente_id').val() == 2 && validarNuevaImportacion) {
         $('.input-proforma').append(input)
 
-    } else if($('#cliente_id').val() == 2 && validarNuevaImportacion == null) {
+    } else if ($('#cliente_id').val() == 2 && validarNuevaImportacion == null) {
         $('.input-proforma').append(input)
         $('.proforma-pedimento-label').text('Proforma Pedimento Pagado');
 
@@ -241,22 +263,22 @@ function asignarPedimento() {
 // Filtros
 
 $('#clientes_filtro').on('change', function filtrar() {
-    if($('#clientes_filtro').val()) {
+    if ($('#clientes_filtro').val()) {
         var embarques = '';
-        $.get('/embarques/' +$('#clientes_filtro').val() + '/filtro', function(data) {
+        $.get('/embarques/' + $('#clientes_filtro').val() + '/filtro', function (data) {
             $('tbody').children().remove();
 
-            for(let i=0; i<data.length; ++i) {
-                embarques += `<tr><td>${data[i].referencia}</td>`+
-                `<td class="font-weight-bold">${data[i].estado.nombre}</td>`+
-                `<td><a href="/importacion/${data[i].id}" class="btn btn-primary d-block mb-2">Ver</a>`+
-                `<a href="/embarques/${data[i].id}/edit" class="btn btn-dark d-block mb-2">Editar</a>` +
-                `<a class="btn btn-danger d-block mb-2" data-id="${data[i].id}" id="eliminar-embarque">Eliminar x</a></td></tr>`
+            for (let i = 0; i < data.length; ++i) {
+                embarques += `<tr><td>${data[i].referencia}</td>` +
+                    `<td class="font-weight-bold">${data[i].estado.nombre}</td>` +
+                    `<td><a href="/importacion/${data[i].id}" class="btn btn-primary d-block mb-2">Ver</a>` +
+                    `<a href="/embarques/${data[i].id}/edit" class="btn btn-dark d-block mb-2">Editar</a>` +
+                    `<a class="btn btn-danger d-block mb-2" data-id="${data[i].id}" id="eliminar-embarque">Eliminar x</a></td></tr>`
             }
 
             $('tbody').append(embarques);
 
-            $('#eliminar-embarque').on('click', function(el) {
+            $('#eliminar-embarque').on('click', function (el) {
                 const attribute = document.querySelector('#eliminar-embarque').getAttribute('data-id');
 
                 Swal.fire({
@@ -268,11 +290,11 @@ $('#clientes_filtro').on('change', function filtrar() {
                     cancelButtonColor: "#3085d6",
                     confirmButtonColor: "#d33",
                     cancelButtonText: 'No'
-                  }).then((result) => {
+                }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                      Swal.fire({
-                        title: 'Eliminar',
+                        Swal.fire({
+                            title: 'Eliminar',
                             text: 'Eliminando Importación',
                             icon: 'info',
                             showOkButton: false,
@@ -281,34 +303,34 @@ $('#clientes_filtro').on('change', function filtrar() {
                             didOpen: () => {
                                 Swal.showLoading()
                             }
-                      })
-
-                      const params = {
-                        id: this.recetaId,
-                    };
-                    // Enviar la petición al servidor
-                    axios
-                        .post(`/embarques/${attribute}/eliminar`, {
-                            params,
-                            _method: "delete",
                         })
-                        .then((respuesta) => {
-                           Swal.fire({
-                                title: "Importación Eliminada",
-                                text: "Se eliminó la Importación",
-                                icon: "success",
+
+                        const params = {
+                            id: this.recetaId,
+                        };
+                        // Enviar la petición al servidor
+                        axios
+                            .post(`/embarques/${attribute}/eliminar`, {
+                                params,
+                                _method: "delete",
+                            })
+                            .then((respuesta) => {
+                                Swal.fire({
+                                    title: "Importación Eliminada",
+                                    text: "Se eliminó la Importación",
+                                    icon: "success",
+                                });
+
+                                // Eliminar embarque del DOM
+                                location.reload();
+
+                            })
+
+                            .catch((error) => {
+                                console.log(error);
                             });
-
-                            // Eliminar embarque del DOM
-                            location.reload();
-
-                        })
-
-                        .catch((error) => {
-                            console.log(error);
-                        });
                     }
-                  })
+                })
 
             })
 
@@ -333,26 +355,26 @@ function eliminarEmbarque(id) {
         icon: 'warning',
         allowEscapeKey: false,
         allowOutsideClick: false
-    }).then((result)=> {
-        if(result.value) {
+    }).then((result) => {
+        if (result.value) {
             Swal.fire({
                 title: 'Eliminar',
                 text: 'Eliminando Importación',
                 icon: 'info',
                 allowEscapeKey: false,
                 allowOutsideClick: false,
-                didOpen:()=> {
+                didOpen: () => {
                     Swal.showLoading()
                 }
             });
             $.ajax({
                 url: `/embarques/${id}/eliminar`,
                 method: 'DELETE',
-                data:{
+                data: {
                     id: id,
                     _token: $('input[name="_token"]').val()
                 }
-            }).done(function() {
+            }).done(function () {
                 Swal.fire({
                     title: 'Eliminar',
                     text: 'Importación eliminada',

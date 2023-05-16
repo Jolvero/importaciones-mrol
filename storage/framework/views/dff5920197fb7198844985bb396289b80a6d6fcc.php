@@ -523,6 +523,9 @@ unset($__errorArgs, $__bag); ?>
                             value="<?php echo e(Str::uuid()->tostring()); ?>">
                         <input type="hidden" id="uuid_kpi" name="uuid_kpi" value="<?php echo e(Str::uuid()->toString()); ?>">
 
+                        <input type="hidden" id="url" name="url" value="<?php echo e(Route::currentRouteName()); ?>">
+
+
                         <div class="form-group d-flex justify-content-center" id="section-btn">
                             <input type="submit" class="btn btn-primary mx-auto mt-4" id="agregar-embarque"
                                 name="agregar-embarque" value="Agregar">
@@ -539,7 +542,9 @@ unset($__errorArgs, $__bag); ?>
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table">
             <thead class="bg-primary text-light">
                 <tr>
+                    <th scole="col">#</th>
                     <th scole="col">Referencia</th>
+                    <th scole="col">Cliente</th>
                     <th scole="col">Estatus</th>
 
                     <th scole="col" class="text-center">Acciones</th>
@@ -550,7 +555,9 @@ unset($__errorArgs, $__bag); ?>
 
                 <?php $__currentLoopData = $embarques; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $embarque): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
+                        <td><?php echo e($embarque->id); ?></td>
                         <td><?php echo e($embarque->referencia); ?></td>
+                        <td><?php echo e($embarque->cliente->cliente); ?></td>
                         <td class="font-weight-bold"><?php echo e($embarque->estado->nombre); ?></td>
                         <td>
                             <a href="<?php echo e(route('embarques.show', ['embarque' => $embarque->id])); ?>"

@@ -25,8 +25,7 @@ class KpiController extends Controller
     {
         $validarAdmin = Auth::user()->rol_id;
 
-        if($validarAdmin !=1)
-        {
+        if ($validarAdmin != 1) {
             return back();
         }
 
@@ -36,8 +35,7 @@ class KpiController extends Controller
         $mesEspanol = $mes->monthName;
         $clientes = Cliente::all();
 
-        foreach($clientes as $cliente)
-        {
+        foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
         }
 
@@ -52,8 +50,7 @@ class KpiController extends Controller
 
         $user = Auth::user()->rol_id;
 
-        if($user == 3)
-        {
+        if ($user == 3) {
             return back();
         }
         $ajaxPrincipal = [];
@@ -61,14 +58,13 @@ class KpiController extends Controller
         $ajaxArrDespacho = [];
         $ajaxDespCG = [];
         $ajaxReferencias = [];
-        $embarques = Embarque::whereMonth('created_at', $mes)->where('tipo_id', $tipo)->where('cliente_id', $cliente)->get();
+        $embarques = Embarque::where('mes_id', $mes)->where('tipo_id', $tipo)->where('cliente_id', $cliente)->get();
         foreach ($embarques as $embarque) {
             $arribo = $embarque->arribo;
             $despacho = $embarque->despacho;
             $fechaDocumentacion = $embarque->documentacion;
             $ajaxReferencias[] = $embarque->referencia;
-            if($fechaDocumentacion && $arribo)
-            {
+            if ($fechaDocumentacion && $arribo) {
                 $fechaArribo = Carbon::parse($arribo);
                 $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
 
@@ -81,11 +77,9 @@ class KpiController extends Controller
 
                 $diferencia = $fechaDespacho->diffInDays($fechaArribo);
                 $ajaxArrDespacho[] = $diferencia;
-
             }
             $cuentaGastos = $embarque->cuenta_gastos;
-            if($despacho && $cuentaGastos)
-            {
+            if ($despacho && $cuentaGastos) {
                 $fechaDespacho = Carbon::parse($despacho);
                 $FechaCG = Carbon::parse($cuentaGastos);
 
@@ -93,19 +87,13 @@ class KpiController extends Controller
 
                 $ajaxDespCG[] = $diferencia;
             }
-
-
         }
-        $ajaxPrincipal[]= $ajaxDocArribo;
-        $ajaxPrincipal[]= $ajaxArrDespacho;
-        $ajaxPrincipal[]= $ajaxDespCG;
-        $ajaxPrincipal[]= $ajaxReferencias;
+        $ajaxPrincipal[] = $ajaxDocArribo;
+        $ajaxPrincipal[] = $ajaxArrDespacho;
+        $ajaxPrincipal[] = $ajaxDespCG;
+        $ajaxPrincipal[] = $ajaxReferencias;
 
-            return $ajaxPrincipal;
-
-
-
-
+        return $ajaxPrincipal;
     }
 
     /**

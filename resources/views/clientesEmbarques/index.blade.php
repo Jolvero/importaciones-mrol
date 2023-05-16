@@ -16,18 +16,8 @@
 
 @section('content')
 
-<h1 class="mb-5">Bienvenido/a {{Auth::user()->name}}</h1>
-<div class="hero"  data-aos="fade-up" data-aos-duration="1000">
-    <form action="{{route('cliente.buscar')}}" class="container h-100">
-        <div class="row h-100 align-items-center mt-4 justify-content-center">
-           <div class="col-md-6 texto-buscar">
-            <p class="display-4 mb-4">Buscar Importación</p>
+<h1 class="mb-5 font-weight-bold">Bienvenido/a {{Auth::user()->name}}</h1>
 
-            <input type="search" name="buscar" class="form-control mt-5" placeholder="Buscar Importación">
-           </div>
-        </div>
-    </form>
-</div>
 
 <div class="importaciones-cliente">
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">

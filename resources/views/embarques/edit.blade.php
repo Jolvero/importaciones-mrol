@@ -214,15 +214,17 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="mes_id">Mes <span class="text-danger">*</span></label>
-                            <select name="mes_id" id="mes_id" class="form-control">
+
+
+                            <select name="mes_id" id="mes_id" class="form-control @error('mes_id') is-invalid
+                            @enderror">
                                 <option value="">-- Seleccione --</option>
-                                @foreach ($obtenerMeses as $mes)
-                                    <option
-                                        value="{{ $mes->id }}"{{ $embarque->mes_id == $mes->id ? 'selected' : '' }}>
+                                @foreach ($meses as $mes)
+                                    <option value="{{ $mes->id }}"
+                                        {{ $embarque->mes_id == $mes->id ? 'selected' : '' }}>
                                         {{ $mes->mes }}</option>
                                 @endforeach
                             </select>
@@ -335,7 +337,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="arribo"></label>Arribo <span class="text-danger">*</span>
-                            <input class="form-control mt-2 @error('arribo') is-invalid @enderror" type="date"
+                            <input class="form-control mt-1 @error('arribo') is-invalid @enderror" type="date"
                                 name="arribo" id="arribo" value="{{ $embarque->arribo }}">
                             @error('arribo')
                                 <span class="invalid-feedback d-block" role="alert">
@@ -347,8 +349,8 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="revalidación">Revalidación</label>
-                            <input class="form-control @error('revalidación') is-invalid @enderror" type="date"
+                            <label  for="revalidación">Revalidación</label>
+                            <input class="form-control mt-1 @error('revalidación') is-invalid @enderror" type="date"
                                 id="revalidación" name="revalidación" value="{{ $embarque->revalidación }}">
                             @error('revalidación')
                                 <span class="invalid-feedback d-block" role="alert">

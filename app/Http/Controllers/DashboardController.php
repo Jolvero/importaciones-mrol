@@ -39,7 +39,7 @@ class DashboardController extends Controller
         }
         $ajaxMes = [];
         for ($mes = 1; $mes <= 12; $mes++) {
-            $embarques = Embarque::whereMonth('created_at', strval($mes))->count();
+            $embarques = Embarque::where('mes_id', $mes)->count();
             $ajaxMes[] = $embarques;
         }
 
@@ -48,6 +48,15 @@ class DashboardController extends Controller
 
     public function embarquesMesCliente()
     {
+        $meses = ['01', '02', '03', '04', '05', '06', '07', '08', '09'];
+        $mesActual = date('m');
+        foreach($meses as $mes)
+        {
+            if($mesActual == $mes)
+            {
+                $mesActual = substr($mes, 1);
+            }
+        }
 
         $user = Auth::user()->rol_id;
 
@@ -59,7 +68,7 @@ class DashboardController extends Controller
         $clientes = Cliente::count();
 
         for ($i = 1; $i <= $clientes; $i++) {
-            $embarques = Embarque::whereMonth('created_at', date('m'))->where('cliente_id', $i)->count();
+            $embarques = Embarque::where('mes_id', $mesActual)->where('cliente_id', $i)->count();
             $ajaxCliente[] = $embarques;
         }
         return $ajaxCliente;
@@ -67,6 +76,16 @@ class DashboardController extends Controller
 
     public function kpis()
     {
+
+        $meses = ['01', '02', '03', '04', '05', '06', '07', '08', '09'];
+        $mesActual = date('m');
+        foreach($meses as $mes)
+        {
+            if($mesActual == $mes)
+            {
+                $mesActual = substr($mes, 1);
+            }
+        }
 
         $user = Auth::user()->rol_id;
 
@@ -78,7 +97,7 @@ class DashboardController extends Controller
         $ajaxArrDespacho = [];
         $ajaxDespCG = [];
         $ajaxReferencias = [];
-        $embarques = Embarque::whereMonth('created_at', date('m'))->get();
+        $embarques = Embarque::where('mes_id', $mesActual)->get();
         foreach ($embarques as $embarque) {
             $arribo = $embarque->arribo;
             $despacho = $embarque->despacho;
