@@ -71,12 +71,20 @@ class KpiController extends Controller
                 $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
                 $ajaxDocArribo[] = $diferencia;
             }
+            else
+            {
+                $ajaxDocArribo[] = 0;
+            }
             if ($arribo && $despacho) {
                 $fechaArribo = Carbon::parse($arribo);
                 $fechaDespacho = Carbon::parse($despacho);
 
                 $diferencia = $fechaDespacho->diffInDays($fechaArribo);
                 $ajaxArrDespacho[] = $diferencia;
+            }
+            else
+            {
+                $ajaxArrDespacho[] = 0;
             }
             $cuentaGastos = $embarque->cuenta_gastos;
             if ($despacho && $cuentaGastos) {
@@ -86,6 +94,10 @@ class KpiController extends Controller
                 $diferencia = $FechaCG->diffInDays($fechaDespacho);
 
                 $ajaxDespCG[] = $diferencia;
+            }
+            else
+            {
+                $ajaxDespCG[] = 0;
             }
         }
         $ajaxPrincipal[] = $ajaxDocArribo;
