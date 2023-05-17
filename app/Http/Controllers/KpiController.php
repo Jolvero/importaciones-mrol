@@ -47,6 +47,7 @@ class KpiController extends Controller
 
     public function obtenerKpis($mes, $tipo, $cliente)
     {
+
         $user = Auth::user()->rol_id;
 
         if ($user == 3) {
@@ -63,27 +64,29 @@ class KpiController extends Controller
             $despacho = $embarque->despacho;
             $fechaDocumentacion = $embarque->documentacion;
             $ajaxReferencias[] = $embarque->referencia;
-            $fechaArribo = Carbon::parse($arribo);
-            $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
+            if ($fechaDocumentacion && $arribo) {
+                $fechaArribo = Carbon::parse($arribo);
+                $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
 
-            $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
-            $ajaxDocArribo[] = $diferencia;
+                $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
+                $ajaxDocArribo[] = $diferencia;
+            }
+            if ($arribo && $despacho) {
+                $fechaArribo = Carbon::parse($arribo);
+                $fechaDespacho = Carbon::parse($despacho);
 
-
-            $fechaArribo = Carbon::parse($arribo);
-            $fechaDespacho = Carbon::parse($despacho);
-
-            $diferencia = $fechaDespacho->diffInDays($fechaArribo);
-            $ajaxArrDespacho[] = $diferencia;
-
+                $diferencia = $fechaDespacho->diffInDays($fechaArribo);
+                $ajaxArrDespacho[] = $diferencia;
+            }
             $cuentaGastos = $embarque->cuenta_gastos;
+            if ($despacho && $cuentaGastos) {
+                $fechaDespacho = Carbon::parse($despacho);
+                $FechaCG = Carbon::parse($cuentaGastos);
 
-            $fechaDespacho = Carbon::parse($despacho);
-            $FechaCG = Carbon::parse($cuentaGastos);
+                $diferencia = $FechaCG->diffInDays($fechaDespacho);
 
-            $diferencia = $FechaCG->diffInDays($fechaDespacho);
-
-            $ajaxDespCG[] = $diferencia;
+                $ajaxDespCG[] = $diferencia;
+            }
         }
         $ajaxPrincipal[] = $ajaxDocArribo;
         $ajaxPrincipal[] = $ajaxArrDespacho;

@@ -98,33 +98,48 @@ class DashboardController extends Controller
         $ajaxDespCG = [];
         $ajaxReferencias = [];
         $embarques = Embarque::where('mes_id', $mesActual)->get();
+
         foreach ($embarques as $embarque) {
-            $arribo = $embarque->arribo;
-            $despacho = $embarque->despacho;
             $fechaDocumentacion = $embarque->documentacion;
             $ajaxReferencias[] = $embarque->referencia;
-
-                $fechaArribo = Carbon::parse($arribo);
-                $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
+            if($embarque->documentacion && $embarque->arribo)
+            {
+                $fechaArribo = Carbon::parse($embarque->arribo);
+                $fechaDocumentacion = Carbon::parse($embarque->documentacion);
 
                 $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
                 $ajaxDocArribo[] = $diferencia;
-                $fechaArribo = Carbon::parse($arribo);
-                $fechaDespacho = Carbon::parse($despacho);
+            }
+            else
+            {
+                $ajaxDocArribo[] = 0;
+            }
+            if ($embarque->arribo && $embarque->despacho) {
 
-                $diferencia = $fechaDespacho->diffInDays($fechaArribo);
+                $fechaArribo = Carbon::parse($embarque->arribo);
+                $fechaDespacho = Carbon::parse($embarque->despacho);
+
+                $diferencia = $fechaArribo->diffInDays($fechaDespacho);
                 $ajaxArrDespacho[] = $diferencia;
 
-
-            $cuentaGastos = $embarque->cuenta_gastos;
-
-                $fechaDespacho = Carbon::parse($despacho);
-                $FechaCG = Carbon::parse($cuentaGastos);
+            }
+            else
+            {
+                $ajaxArrDespacho[] = 0;
+            }
+            if($embarque->despacho && $embarque->cuenta_gastos)
+            {
+                $fechaDespacho = Carbon::parse($embarque->despacho);
+                $FechaCG = Carbon::parse($embarque->cuenta_gastos);
 
                 $diferencia = $FechaCG->diffInDays($fechaDespacho);
 
                 $ajaxDespCG[] = $diferencia;
-
+            }
+            else
+            {
+                $ajaxDespCG[] = 0;
+            }
             $ajaxPrincipal = [];
             $ajaxPrincipal[]= $ajaxDocArribo;
             $ajaxPrincipal[]= $ajaxArrDespacho;
