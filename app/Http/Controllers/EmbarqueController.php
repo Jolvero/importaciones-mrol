@@ -67,7 +67,7 @@ class EmbarqueController extends Controller
         $clientes = Cliente::all();
         $mes = Carbon::now()->locale('es');
         $mesEspanol = $mes->monthName;
-        $obtenerMeses = DB::table('meses')->get();
+        $obtenerMeses = DB::table('mes')->get();
 
         foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
@@ -321,7 +321,7 @@ class EmbarqueController extends Controller
         $this->authorize('update', $embarque);
         $clientes = Cliente::all();
         $tipos = DB::table('tipoimportación')->get();
-        $meses = DB::table('meses')->get();
+        $meses = DB::table('mes')->get();
         $estados = EstadoEmbarque::all();
         $documentaciones = DocumentacionEmbarque::all();
         $elementosDespachos = Despacho::all();

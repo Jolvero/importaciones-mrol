@@ -30,7 +30,7 @@ class KpiController extends Controller
         }
 
         $tipos = DB::table('tipoimportación')->get();
-        $meses = DB::table('meses')->get();
+        $meses = DB::table('mes')->get();
         $mes = Carbon::now()->locale('es');
         $mesEspanol = $mes->monthName;
         $clientes = Cliente::all();
@@ -47,7 +47,6 @@ class KpiController extends Controller
 
     public function obtenerKpis($mes, $tipo, $cliente)
     {
-
         $user = Auth::user()->rol_id;
 
         if ($user == 3) {
@@ -64,29 +63,27 @@ class KpiController extends Controller
             $despacho = $embarque->despacho;
             $fechaDocumentacion = $embarque->documentacion;
             $ajaxReferencias[] = $embarque->referencia;
-            if ($fechaDocumentacion && $arribo) {
-                $fechaArribo = Carbon::parse($arribo);
-                $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
+            $fechaArribo = Carbon::parse($arribo);
+            $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
 
-                $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
-                $ajaxDocArribo[] = $diferencia;
-            }
-            if ($arribo && $despacho) {
-                $fechaArribo = Carbon::parse($arribo);
-                $fechaDespacho = Carbon::parse($despacho);
+            $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
+            $ajaxDocArribo[] = $diferencia;
 
-                $diferencia = $fechaDespacho->diffInDays($fechaArribo);
-                $ajaxArrDespacho[] = $diferencia;
-            }
+
+            $fechaArribo = Carbon::parse($arribo);
+            $fechaDespacho = Carbon::parse($despacho);
+
+            $diferencia = $fechaDespacho->diffInDays($fechaArribo);
+            $ajaxArrDespacho[] = $diferencia;
+
             $cuentaGastos = $embarque->cuenta_gastos;
-            if ($despacho && $cuentaGastos) {
-                $fechaDespacho = Carbon::parse($despacho);
-                $FechaCG = Carbon::parse($cuentaGastos);
 
-                $diferencia = $FechaCG->diffInDays($fechaDespacho);
+            $fechaDespacho = Carbon::parse($despacho);
+            $FechaCG = Carbon::parse($cuentaGastos);
 
-                $ajaxDespCG[] = $diferencia;
-            }
+            $diferencia = $FechaCG->diffInDays($fechaDespacho);
+
+            $ajaxDespCG[] = $diferencia;
         }
         $ajaxPrincipal[] = $ajaxDocArribo;
         $ajaxPrincipal[] = $ajaxArrDespacho;

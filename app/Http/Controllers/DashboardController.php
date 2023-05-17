@@ -103,32 +103,28 @@ class DashboardController extends Controller
             $despacho = $embarque->despacho;
             $fechaDocumentacion = $embarque->documentacion;
             $ajaxReferencias[] = $embarque->referencia;
-            if($fechaDocumentacion && $arribo)
-            {
+
                 $fechaArribo = Carbon::parse($arribo);
                 $fechaDocumentacion = Carbon::parse($fechaDocumentacion);
 
                 $diferencia = $fechaDocumentacion->diffInDays($fechaArribo);
                 $ajaxDocArribo[] = $diferencia;
-            }
-            if ($arribo && $despacho) {
                 $fechaArribo = Carbon::parse($arribo);
                 $fechaDespacho = Carbon::parse($despacho);
 
                 $diferencia = $fechaDespacho->diffInDays($fechaArribo);
                 $ajaxArrDespacho[] = $diferencia;
 
-            }
+
             $cuentaGastos = $embarque->cuenta_gastos;
-            if($despacho && $cuentaGastos)
-            {
+
                 $fechaDespacho = Carbon::parse($despacho);
                 $FechaCG = Carbon::parse($cuentaGastos);
 
                 $diferencia = $FechaCG->diffInDays($fechaDespacho);
 
                 $ajaxDespCG[] = $diferencia;
-            }
+
             $ajaxPrincipal = [];
             $ajaxPrincipal[]= $ajaxDocArribo;
             $ajaxPrincipal[]= $ajaxArrDespacho;

@@ -1,11 +1,7 @@
 
-
-
-
-
 const tabla = document.querySelector('table');
 if (tabla) {
-    $('#table').DataTable({
+    $('#table-embarques').DataTable({
         responsive: true,
         colReorder: true,
         RowReorder: true,

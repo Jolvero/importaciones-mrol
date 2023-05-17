@@ -40,7 +40,7 @@ class CreateEmbarquesTable extends Migration
         });
 
 
-        Schema::create('meses', function(Blueprint $table)
+        Schema::create('mes', function(Blueprint $table)
         {
             $table->id();
             $table->string('mes');

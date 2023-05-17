@@ -63,7 +63,7 @@
     @endif
     <div class="modal fade ml-3 ml-md-0" id="nuevaImportacion" tabindex="-1" aria-hidden="true" data-keyboard="false"
         data-backdrop="static" aria-labelledby="nuevaImportacionLabel">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header" data-aos="fade-up" data-aos-duration="1000">
                     <h5 class="modal-titile nueva-importacion">Nueva Importación</h5>
@@ -347,18 +347,18 @@
         </div>
     </div>
 
-    <h1 class="text-center font-weight-bold text-uppercase mb-5">Importaciones</h1>
+    <h1 class="text-center font-weight-bold text-uppercase mb-5 card card-body py-2">Importaciones</h1>
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">
 
-        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table">
+        <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-embarques">
             <thead class="bg-primary text-light">
                 <tr>
-                    <th scole="col">#</th>
-                    <th scole="col">Referencia</th>
-                    <th scole="col">Cliente</th>
-                    <th scole="col">Estatus</th>
-
-                    <th scole="col" class="text-center">Acciones</th>
+                    <th>#</th>
+                    <th>Referencia</th>
+                    <th>Cliente</th>
+                    <th>Mes</th>
+                    <th>Estatus</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
 
@@ -369,6 +369,7 @@
                         <td>{{$embarque->id}}</td>
                         <td>{{ $embarque->referencia }}</td>
                         <td>{{$embarque->cliente->cliente}}</td>
+                        <td>{{$embarque->mes->mes}}</td>
                         <td class="font-weight-bold">{{ $embarque->estado->nombre }}</td>
                         <td>
                             <a href="{{ route('embarques.show', ['embarque' => $embarque->id]) }}"

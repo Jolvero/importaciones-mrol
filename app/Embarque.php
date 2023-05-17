@@ -58,4 +58,9 @@ class Embarque extends Model
         return $this->belongsTo(Despacho::class, 'despacho_id');
     }
 
+    public function mes()
+    {
+        return $this->belongsTo(Mes::class);
+    }
+
 }
