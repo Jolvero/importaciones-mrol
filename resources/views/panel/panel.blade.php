@@ -52,7 +52,7 @@
                 <div class="item-parent py-2">
                 <a href="#submenuCatalogos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <img
                         src="{{ '/images/cuadricula.png' }}" class="ml-2 item-img mr-3 ml-0"
-                        alt=""><span>Catalogos</span></a>
+                        alt=""><span>Catálogos</span></a>
                     </div>
                 <ul class="collapse list-unstyled" id="submenuCatalogos">
                     <li>
