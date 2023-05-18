@@ -110,9 +110,8 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </div>
     <div class="container ml-5 ml-md-0">
-        <h2 class="font-weight-bold">Clientes</h2>
-
-        <button type="button" data-target="#nuevoCliente" data-toggle="modal" class="float-right btn btn-nuevo-cliente text-white mb-5"><img src="<?php echo e('/images/anadir.png'); ?>" width="50px" alt=""> Nuevo
+        <h1 class="text-center font-weight-bold text-uppercase mb-5 card card-body py-2 border-0 shadow" style="border-radius: 2rem;">Clientes</h1>
+        <button type="button" style="border-radius: 1rem;" data-target="#nuevoCliente" data-toggle="modal" class="float-right btn btn-nuevo-cliente text-white mb-5"><img src="<?php echo e('/images/anadir.png'); ?>" width="50px"  alt=""> Nuevo
             Cliente</button>
 
             <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-clientes">

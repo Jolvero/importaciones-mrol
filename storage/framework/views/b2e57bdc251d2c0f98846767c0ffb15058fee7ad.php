@@ -1,10 +1,10 @@
 <section data-aos="fade-down" data-aos-duration="1000" class="ml-5 ml-md-0">
-    <h3 class="font-weight-bold mb-5 mr-5 mr-md-0 p-3 card card-body text-center">Bienvenido/a <?php echo e($nombre); ?></h3>
+    <h3 class="font-weight-bold mb-5 mr-5 mr-md-0 p-3 card card-body text-center border-0 shadow" style="border-radius: 2rem">Bienvenido/a <?php echo e($nombre); ?></h3>
     <div class="row ml-4 justify-content-center">
         
 
         <div class="col-md-3 mr-5 mr-md-0">
-            <div class="card ml-3">
+            <div class="card ml-3 border-0 shadow" style="border-radius: 2rem">
                 <div class="card-body">
                     <div class="d-flex">
                         <img src="<?php echo e('/images/contenedores.dash.png'); ?>" alt="">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-3 mr-5 mr-md-0">
-            <div class="card ml-3 ">
+            <div class="card ml-3 border-0 shadow" style="border-radius: 2rem">
                 <div class="card-body">
                     <div class="d-flex">
                         <img src="<?php echo e('/images/cliente.dash.png'); ?>" alt="">
@@ -27,7 +27,7 @@
     </div>
 </section>
 
-<section class="distribuciones mt-5 card card-body h-auto mb-5" data-aos="zoom-in" data-aos-duration="1300">
+<section class="distribuciones mt-5 card card-body h-auto mb-5 border-0 shadow" style="border-radius: 2rem"  data-aos="zoom-in" data-aos-duration="1300">
     <h2 class="font-weight-bold text-center mt-3">Importaciones del Mes</h2>
     <figure class="ml-5 ml-md-0  mt-4">
         <div id="containerImportaciones">
@@ -36,7 +36,7 @@
     </figure>
 </section>
 <!-- Inventario -->
-<section class="inventario mt-5 pt-3 card card-body h-auto mt-5">
+<section class="inventario mt-5 pt-3 card card-body h-auto mt-5 border-0 shadow" style="border-radius: 2rem;">
     <h2 class="font-weight-bold text-center mt-3">Importaciones por Cliente</h2>
 
     <figure class="ml-5 ml-md-0">
@@ -47,7 +47,7 @@
 
 <section class="inventario mt-5 pt-3">
     <div class="row">
-        <div class="col-md-6 mt-5 card card-body ml-5 ">
+        <div class="col-md-6 mt-5 card card-body ml-5 border-0 shadow" style="border-radius: 2rem;">
             <h2 class="font-weight-bold text-center my-3">Importaciones del mes</h2>
 
             <figure class="w-100">
@@ -55,7 +55,7 @@
             </figure>
         </div>
 
-        <div class="col-md-12 mt-5 pt-5 ml-5 ml-md-0 card card-body h-auto">
+        <div class="col-md-12 mt-5 pt-5 ml-5 ml-md-0 card card-body h-auto border-0 shadow" style="border-radius: 2rem;">
             <h2 class="text-center font-weight-bold">Kpis</h2>
             <figure>
                 <div id="kpis"></div>

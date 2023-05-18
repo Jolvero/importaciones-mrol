@@ -536,7 +536,7 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 
-    <h1 class="text-center font-weight-bold text-uppercase mb-5 card card-body py-2">Importaciones</h1>
+    <h1 class="text-center font-weight-bold text-uppercase mb-5 card card-body py-2 border-0 shadow" style="border-radius: 2rem;">Importaciones</h1>
     <div class="col-md-10 mx-auto" data-aos="fade-up" data-aos-duration="1000">
 
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-embarques">
