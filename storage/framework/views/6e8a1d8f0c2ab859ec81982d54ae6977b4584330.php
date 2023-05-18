@@ -26,7 +26,7 @@
                         <a class="sidebar-item d-flex link link-importaciones my-2" id="embarque-index" href="<?php echo e(route('embarques.index')); ?>">
                             <img class="ml-2 item-img mr-3 ml-0" src="<?php echo e('/images/crear.embarque.png'); ?>"
                                 alt=""><span class="mt-0 consultar-embarque">Consultar o ingresar
-                                Importacion</span>
+                                Importación</span>
                         </a>
                     </li>
 

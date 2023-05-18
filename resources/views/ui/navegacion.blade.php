@@ -19,6 +19,6 @@
 
 </form> --}}
 
-<button class="btn btn-nueva-importacion float-right text-white" data-toggle="modal" data-target="#nuevaImportacion">Nueva Importacion <img src="{{'/images/anadir.png'}}" width="50px" alt=""></button>
+<button class="btn btn-nueva-importacion float-right text-white" data-toggle="modal" data-target="#nuevaImportacion">Nueva Importación <img src="{{'/images/anadir.png'}}" width="50px" alt=""></button>
 
 </div>
