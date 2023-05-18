@@ -353,7 +353,6 @@
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-embarques">
             <thead class="bg-primary text-light">
                 <tr>
-                    <th>#</th>
                     <th>Referencia</th>
                     <th>Cliente</th>
                     <th>Mes</th>
@@ -366,7 +365,6 @@
 
                 @foreach ($embarques as $embarque)
                     <tr>
-                        <td>{{$embarque->id}}</td>
                         <td>{{ $embarque->referencia }}</td>
                         <td>{{$embarque->cliente->cliente}}</td>
                         <td>{{$embarque->mes->mes}}</td>

@@ -542,7 +542,6 @@ unset($__errorArgs, $__bag); ?>
         <table class="table w-100 display responsive nowrap ml-5 ml-md-0" id="table-embarques">
             <thead class="bg-primary text-light">
                 <tr>
-                    <th>#</th>
                     <th>Referencia</th>
                     <th>Cliente</th>
                     <th>Mes</th>
@@ -555,7 +554,6 @@ unset($__errorArgs, $__bag); ?>
 
                 <?php $__currentLoopData = $embarques; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $embarque): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td><?php echo e($embarque->id); ?></td>
                         <td><?php echo e($embarque->referencia); ?></td>
                         <td><?php echo e($embarque->cliente->cliente); ?></td>
                         <td><?php echo e($embarque->mes->mes); ?></td>
