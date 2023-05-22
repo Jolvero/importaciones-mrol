@@ -1,5 +1,10 @@
-
 const tabla = document.querySelector('table');
+document.addEventListener('DOMContentLoaded', asignarPedimento)
+const mes = new Date();
+const numero = mes.getMonth()
+const acomodar = numero + 1;
+const url = document.querySelector('#url')
+
 if (tabla) {
     $('#table-embarques').DataTable({
         responsive: true,
@@ -34,17 +39,10 @@ if (tabla) {
     )
 };
 
-
-document.addEventListener('DOMContentLoaded', asignarPedimento)
-const mes = new Date();
-const numero = mes.getMonth()
-const acomodar = numero + 1;
-const url = document.querySelector('#url')
-
-if(url) {
+// el mes se actualiza cuando se crean embarques
+if (url) {
     $('#mes_id option[value=' + acomodar + ']').attr('selected', true)
 }
-
 
 // validación
 $('#formulario').on('submit', function validarFormulario() {
@@ -175,14 +173,14 @@ $('#formulario').on('submit', function validarFormulario() {
         return false;
     }
 
-
     if (new Date(despacho) < new Date(arribo)) {
         Swal.fire({
             title: 'validación',
             text: 'la fecha Despacho debe ser posterior a Arribo',
             icon: 'error'
         })
-        return false;    } else {
+        return false;
+    } else {
         console.log('f1 < f2')
     }
 
@@ -212,8 +210,6 @@ $('#formulario').on('submit', function validarFormulario() {
         }
     }
 
-
-
     Swal.fire({
         title: 'importacion',
         text: 'Subiendo Importacion',
@@ -224,9 +220,6 @@ $('#formulario').on('submit', function validarFormulario() {
             Swal.showLoading()
         }
     })
-
-
-
     $('#agregar-embarque').prop('disabled', true)
 })
 
@@ -257,7 +250,6 @@ function asignarPedimento() {
 }
 
 // Filtros
-
 $('#clientes_filtro').on('change', function filtrar() {
     if ($('#clientes_filtro').val()) {
         var embarques = '';

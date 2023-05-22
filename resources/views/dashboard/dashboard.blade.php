@@ -36,7 +36,7 @@
     </div>
 </section>
 
-<section class="distribuciones mt-5 card card-body h-auto mb-5 border-0 shadow" style="border-radius: 2rem"  data-aos="zoom-in" data-aos-duration="1300">
+<section class="distribuciones mt-5 card card-body h-auto mb-5 border-0 shadow" style="border-radius: 2rem;"  data-aos="zoom-in" data-aos-duration="1300">
     <h2 class="font-weight-bold text-center mt-3">Importaciones del Mes</h2>
     <figure class="ml-5 ml-md-0  mt-4">
         <div id="containerImportaciones">
@@ -54,19 +54,22 @@
 
 </section>
 
-<section class="inventario mt-5 pt-3">
+<section class="inventario mt-5 mb-5 pt-3 card card-body h-auto mt-5 border-0 shadow" style="border-radius: 2rem;">
     <div class="row">
-        <div class="col-md-6 mt-5 card card-body ml-5 border-0 shadow" style="border-radius: 2rem;">
-            <h2 class="font-weight-bold text-center my-3">Importaciones del mes</h2>
+        <div class="col-md-6 " >
+            <h2 class="font-weight-bold text-center mt-3">Importaciones del mes</h2>
 
-            <figure class="w-100">
+            <figure>
                 <div id="mesClientes"></div>
             </figure>
         </div>
+        <div class="col-md-6">
 
-        <div class="col-md-12 mt-5 pt-5 ml-5 ml-md-0 card card-body h-auto border-0 shadow" style="border-radius: 2rem;">
+        </div>
+
+        <div class="col-md-12 mt-5 pt-5 ml-5 ml-md-0">
             <h2 class="text-center font-weight-bold">Kpis</h2>
-            <figure>
+            <figure class="mr-4">
                 <div id="kpis"></div>
             </figure>
         </div>

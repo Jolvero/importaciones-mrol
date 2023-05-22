@@ -48,7 +48,6 @@ $.get('/importaciones/mes', function(data) {
 })
 
 // etiquetas clientes
-
 $.get('/clientes/nombres', function(data) {
     let clientes = [];
 
@@ -59,6 +58,23 @@ $.get('/clientes/nombres', function(data) {
     // importaciones por cliente
     $.get('/importaciones/mes/cliente', function(data) {
         var options = {
+            plotOptions: {
+                pie: {
+                  customScale: 0.8
+                }
+              },
+            toolbar: {
+                show: true,
+                offsetX: 0,
+                offsetY: 0,
+                tools: {
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                }
+            },
             colors:['#3A83C8', '#415fff', '#9C27B0', '#3acfe7', '#e15018', '#3f33ef', '#b5ff7c', '#ff3305'],
             series: data,
             chart: {
@@ -70,10 +86,12 @@ $.get('/clientes/nombres', function(data) {
             breakpoint: 480,
             options: {
               chart: {
-                width: 200
+                width: '100%',
+                height: 550
               },
               legend: {
-                position: 'bottom'
+                position: 'bottom',
+
               }
             }
           }]
