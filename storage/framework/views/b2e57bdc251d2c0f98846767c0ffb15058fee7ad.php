@@ -3,12 +3,12 @@
     <div class="row ml-4 justify-content-center">
         
 
-        <div class="col-md-3 mr-5 mr-md-0">
+        <div class="col-md-3 mr-5 mr-md-0 mb-3 mb-md-0">
             <div class="card ml-3 border-0 shadow" style="border-radius: 2rem">
                 <div class="card-body">
                     <div class="d-flex">
                         <img src="<?php echo e('/images/contenedores.dash.png'); ?>" alt="">
-                        <p class="font-weight-bold ml-3"><?php echo e($embarques); ?> Importaciones</p>
+                        <p class="font-weight-bold"><?php echo e($embarques); ?> Importaciones</p>
                     </div>
                 </div>
             </div>
@@ -45,9 +45,9 @@
 
 </section>
 
-<section class="inventario mt-5 mb-5 pt-3 card card-body h-auto mt-5 border-0 shadow" style="border-radius: 2rem;">
+<section class="inventario mt-5  pt-3 card card-body h-auto mt-5 border-0 shadow" style="border-radius: 2rem;">
     <div class="row">
-        <div class="col-md-6 " >
+        <div class="col-md-6" >
             <h2 class="font-weight-bold text-center mt-3">Importaciones del mes</h2>
 
             <figure>

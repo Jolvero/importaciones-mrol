@@ -75,7 +75,7 @@ $.get('/clientes/nombres', function(data) {
                     pan: true,
                 }
             },
-            colors:['#3A83C8', '#415fff', '#9C27B0', '#3acfe7', '#e15018', '#3f33ef', '#b5ff7c', '#ff3305'],
+            colors:['#3A83C8', '#415fff', '#9C27B0', '#3acfe7', '#e15018', '#37d962', '#b5ff7c', '#ff3305'],
             series: data,
             chart: {
             width: 450,
@@ -102,8 +102,6 @@ $.get('/clientes/nombres', function(data) {
 
     })
 })
-
-
 
 // kpis
 
