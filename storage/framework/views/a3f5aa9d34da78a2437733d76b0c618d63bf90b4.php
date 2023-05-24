@@ -5,7 +5,6 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="<?php echo e(asset('js/importacionesDashboard.js')); ?>"defer></script>
-<!-- Inventario -->
 <script src="<?php echo e(asset('js/inventario.js')); ?>"defer></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>

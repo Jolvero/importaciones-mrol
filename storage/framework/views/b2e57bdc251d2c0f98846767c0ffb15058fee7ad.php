@@ -45,7 +45,7 @@
 
 </section>
 
-<section class="inventario mt-5  pt-3 card card-body h-auto mt-5 border-0 shadow" style="border-radius: 2rem;">
+<section class="inventario mt-5 mb-5 pt-3 card card-body h-auto border-0 shadow" style="border-radius: 2rem;">
     <div class="row">
         <div class="col-md-6" >
             <h2 class="font-weight-bold text-center mt-3">Importaciones del mes</h2>
@@ -54,8 +54,10 @@
                 <div id="mesClientes"></div>
             </figure>
         </div>
-        <div class="col-md-6">
-
+        <div class="col-lg-6">
+        <h2 class="font-weight-bold text-center my-3"><img src="<?php echo e('/images/medalla.png'); ?>" alt=""> Top 10 del mes</h2>
+        <div id="top-10" class="ml-4 ml-md-0">
+        </div>
         </div>
 
         <div class="col-md-12 mt-5 pt-5 ml-5 ml-md-0">

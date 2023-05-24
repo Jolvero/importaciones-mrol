@@ -154,3 +154,11 @@ $.get('/clientes/nombres', function(data) {
       var chart = new ApexCharts(document.querySelector("#kpis"), options);
       chart.render();
   })
+
+  // top 10 del mes
+  $.get('/embarques/top', function(data) {
+    for(let i = 0; i < data.length; i++) {
+        $('#top-10').append(`<p class="top-10 font-weight-bold">${data[i].referencia}<span class="float-right">${data[i].dias_arribo_despacho}</span></p>`);
+    }
+
+  })

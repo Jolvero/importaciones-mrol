@@ -286,6 +286,8 @@ class EmbarqueController extends Controller
         return response()->download(public_path($fileName));
     }
 
+
+
     /**
      * Display the specified resource.
      *
@@ -590,61 +592,5 @@ class EmbarqueController extends Controller
         return view('busquedas.show', compact('embarques', 'busqueda'));
     }
 
-    // Busqueda de embarques en el panel de administración
-    public function searchEmbarque(Request $request, Embarque $embarque)
-    {
-        if (Auth::user()->rol_id !== 3) {
-            $busqueda = $request->get('buscarEmbarque');
-            $busquedaCliente = 0;
-            $clientes = Cliente::where('cliente', $request['buscarEmbarque'])->get();
-            if ($busqueda == 'ZTE' || $busqueda == 'zte') {
-                $busquedaCliente = 1;
-            }
-            if ($busqueda == 'VIVO' || $busqueda == 'vivo') {
-                $busquedaCliente = 2;
-            }
-            if ($busqueda == 'OPPO' || $busqueda == 'oppo') {
-                $busquedaCliente = 3;
-            }
-            if ($busqueda == 'REALME' || $busqueda == 'realme') {
-                $busquedaCliente = 4;
-            }
-            if ($busqueda == 'XIAOMI' || $busqueda == 'xiaomi') {
-                $busquedaCliente = 5;
-            }
-            if ($busqueda == 'TCL' || $busqueda == 'tcl') {
-                $busquedaCliente = 6;
-            }
-            if ($busqueda == 'VMC' || $busqueda == 'vmc') {
-                $busquedaCliente = 7;
-            }
 
-            if ($busqueda == 'CLOUDBRIDGUE' || $busqueda == 'cloudbridgue') {
-                $busquedaCliente == 9;
-            }
-            $embarques = Embarque::where('referencia', 'like', '%' . $busqueda . '%')->orWhere('cliente_id', 'like', '%' . $busquedaCliente . '%')->paginate(7);
-            $embarques->appends(['buscarEmbarque' => $busqueda]);
-
-            if (strlen($busqueda) == 0) {
-                return back();
-            }
-
-            return view('busquedas.show2', compact('embarques', 'busqueda', 'clientes'));
-        } else {
-            abort(403, 'Unauthorized');
-        }
-        // $busqueda = $request['buscar'];
-
-    }
-
-    public function filtrar($id)
-    {
-        $embarques = Embarque::where('cliente_id', $id)->get();
-
-        foreach ($embarques as $embarque) {
-            $embarque->estado->nombre = $embarque->estado->nombre;
-        }
-
-        return $embarques;
-    }
 }

@@ -9,9 +9,9 @@
 <body>
     <?php $__currentLoopData = $despachos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $despacho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <h2>Estatus de despacho <?php echo e($despacho->referencia); ?>:<span><?php echo e($despacho->despachos->nombre); ?></span></h2>
-    <p >Consulta toda la información en <a href="http://127.0.0.1:8000/importacion/<?php echo e($despacho->id); ?>">http://127.0.0.1:8000/importacion/<?php echo e($despacho->id); ?></a></p>
+    <p >Consulta toda la informaci贸n en <a href="http://importaciones.mrollogistics.com/importacion/<?php echo e($despacho->id); ?>">http://importaciones.mrollogistics.com/importacion/<?php echo e($despacho->id); ?></a></p>
 
-    <img style="display:block" src='http://127.0.0.1:8000/images/logo.jpeg' alt="">
+    <img style="display:block" src='http://importaciones.mrollogistics.com/images/logo.jpeg' alt="img-logo" alt="">
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </body>
 </html>

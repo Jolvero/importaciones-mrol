@@ -74,6 +74,48 @@ class DashboardController extends Controller
         return $ajaxCliente;
     }
 
+    public function obtenerTopMesEmbarques()
+    {
+        $mes = date('m');
+        $embarques = Embarque::where('mes_id', $mes)->get(['referencia', 'arribo', 'despacho', 'tipo_id', 'mes_id']);
+
+        $arrayTopsMes = [];
+
+        foreach($embarques as $embarque)
+        {
+            if(count($arrayTopsMes) == 10)
+            {
+                break;
+            }
+            if($embarque->arribo && $embarque->despacho)
+            {
+                $fechaArribo = Carbon::parse($embarque->arribo);
+                $fechaDespacho = Carbon::parse($embarque->despacho);
+
+                $diferencia = $fechaDespacho->diffInDays($fechaArribo);
+
+                 if($embarque->tipo_id == 1)
+                 {
+                    $validarTresDiasMaximo = $diferencia < 3;
+                    if($validarTresDiasMaximo)
+                    {
+                        $arrayTopsMes[] = array('referencia' =>$embarque->referencia, 'dias_arribo_despacho' => $diferencia);
+                    }
+                 }
+                 else
+                 {
+                    $validarCincoDiasMaximo = $diferencia < 5;
+                    if($validarCincoDiasMaximo)
+                    {
+                        $arrayTopsMes[] = array('referencia' =>$embarque->referencia, 'dias_arribo_despacho' => $diferencia);
+                    }
+                 }
+            }
+        }
+
+        return $arrayTopsMes;
+    }
+
     public function kpis()
     {
 

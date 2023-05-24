@@ -11720,6 +11720,10 @@ body::-webkit-scrollbar-thumb:hover {
   background: #3d3d3d;
 }
 
+.top-10 {
+  border-bottom: 3px solid #722f37;
+}
+
 .bg-catalogo {
   background-color: #00abfa;
 }

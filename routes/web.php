@@ -32,6 +32,7 @@ Route::get('/importacion/{embarque}', 'EmbarqueController@show')->name('embarque
 // dashboard
 Route::get('/importaciones/mes', 'DashboardController@embarquesMes');
 Route::get('/importaciones/mes/cliente', 'DashboardController@embarquesMesCliente');
+Route::get('/embarques/top', 'DashboardController@obtenerTopMesEmbarques')->name('top.embarques');
 
 Route::get('/importaciones/kpis', 'DashboardController@kpis');
 
