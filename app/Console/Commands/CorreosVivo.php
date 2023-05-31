@@ -51,7 +51,7 @@ class CorreosVivo extends Command
 
             if($contar> 0)
             {
-                Mail::to('yessica.villoria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->bcc('sistemas@mrollogistics.com.mx')->send(new DespachoMail($embarquesVivo));
+                Mail::to('yessica.viloria@mx.vivo.com')->cc('Cristian.Castellanos@mx.vivo.com')->bcc('sistemas@mrollogistics.com.mx')->send(new DespachoMail($embarquesVivo));
 
             }
         }
