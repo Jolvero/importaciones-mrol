@@ -10,7 +10,7 @@
             {{ session('mensaje') }}
         </div>
     @endif
-    <h1 class="text-center font-weight-bold text-uppercase mb-5 card card-body py-2 h-auto border-0 shadow" style="border-radius: 2rem;">Clientes</h1>
+    <h1 class="text-center font-weight-bold text-uppercase mb-5 card card-body py-2 h-auto border-0 shadow" style="border-radius: 2rem;">Usuarios</h1>
 
     <div class="row justify-content-end mt-4">
         <button class="btn btn-nuevo-usuario" style="border-radius: 1rem;" data-toggle="modal" data-target="#nuevousuario"><img
