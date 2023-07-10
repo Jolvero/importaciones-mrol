@@ -76,6 +76,7 @@ class EmbarqueController extends Controller
         foreach($embarques as $embarque)
         {
             $embarque->cliente->cliente = Crypt::decryptString($embarque->cliente->cliente);
+
         }
         //
         // DB::table('estado_embarque')->get()->pluck('nombre', 'id');

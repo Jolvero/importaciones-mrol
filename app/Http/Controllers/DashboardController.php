@@ -65,10 +65,11 @@ class DashboardController extends Controller
             return back();
         }
         $ajaxCliente = [];
-        $clientes = Cliente::count();
+        $clientes = Cliente::all('id');
 
-        for ($i = 1; $i <= $clientes; $i++) {
-            $embarques = Embarque::where('mes_id', $mesActual)->where('cliente_id', $i)->count();
+        foreach($clientes as $cliente)
+        {
+            $embarques = Embarque::where('mes_id', $mesActual)->where('cliente_id', $cliente->id)->count();
             $ajaxCliente[] = $embarques;
         }
         return $ajaxCliente;
