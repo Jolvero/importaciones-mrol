@@ -180,8 +180,6 @@ $('#formulario').on('submit', function validarFormulario() {
             icon: 'error'
         })
         return false;
-    } else {
-        console.log('f1 < f2')
     }
 
     const previo = document.getElementById('previo').value;
@@ -209,6 +207,42 @@ $('#formulario').on('submit', function validarFormulario() {
             return false;
         }
     }
+
+    // validar tamaño de archivos de documentación
+    const archivos = document.getElementById('files')
+    const contarArchivos = archivos.files.length;
+
+    if(contarArchivos > 0) {
+        for(let i = 0; i < contarArchivos; i++) {
+            var pesoArchivo = archivos.files[i].size
+            if(pesoArchivo > 20000000) {
+                Swal.fire({
+                    title: 'Archivos',
+                    text: 'El tamaño máximo de archivo de la documentación es de 20 M, revisa el tamaño de los archivos cargados',
+                    icon: 'error'
+                })
+                return false;
+            }
+        }
+    }
+
+     // validar tamaño de archivos de cuenta de gastos
+     const archivosCG = document.getElementById('file_ctagastos_id')
+     const contarArchivosCG = archivosCG.files.length;
+
+     if(contarArchivosCG > 0) {
+         for(let i = 0; i < contarArchivos; i++) {
+             var pesoArchivo = archivosCG.files[i].size
+             if(pesoArchivo > 20000000) {
+                 Swal.fire({
+                     title: 'Archivos',
+                     text: 'El tamaño máximo de archivo de las Cuentas de Gastos es de 20 M, revisa el tamaño de los archivos cargados',
+                     icon: 'error'
+                 })
+                 return false;
+             }
+         }
+     }
 
     Swal.fire({
         title: 'importacion',

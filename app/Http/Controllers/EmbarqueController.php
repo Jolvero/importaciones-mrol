@@ -168,6 +168,7 @@ class EmbarqueController extends Controller
 
         if ($request->hasFile('files')) {
             foreach ($_FILES['files']['size'] as $file) {
+
                 if ($file > 20000000) {
                     return back()->with('estado', 'No pueden agregarse archivos mayores a 20 mb');
                 }
