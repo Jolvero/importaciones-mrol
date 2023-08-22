@@ -7,11 +7,9 @@ $.get('/importaciones/mes', function(data) {
         name: 'Importaciones',
         data: data
       }],
-
         chart: {
         height: 350,
         type: 'area',
-
         animations: {
             enabled: true,
             easing: 'easeout',
@@ -47,12 +45,28 @@ $.get('/importaciones/mes', function(data) {
       chart.render();
 })
 
+function generarColores(colores) {
+    var simbolos, color;
+	simbolos = "0123456789ABCDEF";
+	color = "#";
+    for(var c = 0; c < 6; c++){
+        color = color + simbolos[Math.floor(Math.random() * 16)];
+    }
+    colores.push(color);
+    color = ''
+    color = color + '#'
+}
+
 // etiquetas clientes
 $.get('/clientes/nombres', function(data) {
     let clientes = [];
+    let colores = [];
+
 
     for(let i = 0; i < data.length; ++i) {
         clientes = [... clientes, data[i]]
+        // genera colores aleatorios
+        generarColores(colores)
     }
 
     // importaciones por cliente
@@ -75,7 +89,7 @@ $.get('/clientes/nombres', function(data) {
                     pan: true,
                 }
             },
-            colors:['#3A83C8', '#415fff', '#9C27B0', '#3acfe7', '#e15018'],
+            colors:colores,
             series: data,
             chart: {
             width: 450,
@@ -102,15 +116,12 @@ $.get('/clientes/nombres', function(data) {
 
     })
 })
-
 // kpis
-
   $.get('/importaciones/kpis', function(data) {
     let referencias = [];
     for(let i = 0; i < data[3].length; ++i) {
         referencias.push(data[3][i])
     }
-
     var options = {
         series: [{
         name: 'Doc-Arribo',
@@ -150,15 +161,12 @@ $.get('/clientes/nombres', function(data) {
       },
 
       };
-
       var chart = new ApexCharts(document.querySelector("#kpis"), options);
       chart.render();
   })
-
   // top 10 del mes
   $.get('/embarques/top', function(data) {
     for(let i = 0; i < data.length; i++) {
         $('#top-10').append(`<p class="top-10 font-weight-bold">${data[i].referencia}<span class="float-right">${data[i].dias_arribo_despacho}</span></p>`);
     }
-
   })
