@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Embarque;
 use App\Rol;
 use App\User;
 use Illuminate\Support\Str;
@@ -150,10 +151,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
-
-        User::whereid($id)->delete();
+        $user->delete();
     }
 }

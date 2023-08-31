@@ -19,7 +19,7 @@ class UserPolicy
     public function viewAny(User $user)
     {
         //
-        return $user->rol_id === 1
+        return $user->rol_id == 1
                 ? Response::allow()
                 : Response::deny('No se puede mostrar esta página');
     }
