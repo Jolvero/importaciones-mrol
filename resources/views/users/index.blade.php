@@ -162,7 +162,7 @@
                             <a href="{{ route('user.edit', ['user' => $usuario->id])}}" class="btn my-2 d-block "
                                 style="background: #c3c3c3;"><img src="{{ '/images/editar.png' }}" alt=""></a>
 
-                                <form method="POST" id="eliminar-usuario">
+                                <form method="POST" class="eliminar-usuario">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-dark d-block mb-2 w-100" id="{{$usuario->id}}" data-toggle="tooltip" data-placement="top" title="Eliminar Usuario" onclick="eliminarUsuario({{$usuario->id}});">  <img src="{{'/images/eliminar.png'}}" alt=""></button>
