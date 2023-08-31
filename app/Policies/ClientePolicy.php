@@ -17,9 +17,18 @@ class ClientePolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user, Cliente $cliente)
     {
         //
+
+        if($user->rol_id !=3 && $user->rol_id !=2)
+        {
+            return $cliente;
+        }
+        else
+        {
+            return abort(403, 'No se puede mostrar esta página');
+        }
 
     }
 

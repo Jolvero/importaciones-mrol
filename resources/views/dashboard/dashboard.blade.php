@@ -69,13 +69,19 @@
         </div>
         </div>
 
+
+    </div>
+
+</section>
+
+<!-- Kpis -->
+
+<section class="kpis mt-5 mb-5 pt-3 card card-body h-auto border-0 shadow" style="border-radius: 2rem;">
         <div class="col-md-12 mt-5 pt-5 ml-5 ml-md-0">
             <h2 class="text-center font-weight-bold">Kpis</h2>
             <figure class="mr-4">
                 <div id="kpis"></div>
             </figure>
         </div>
-    </div>
-
 </section>
 

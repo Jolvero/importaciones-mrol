@@ -51,6 +51,7 @@ function generarColores(colores) {
 	color = "#";
     for(var c = 0; c < 6; c++){
         color = color + simbolos[Math.floor(Math.random() * 16)];
+        console.log(Math.floor(Math.random()*16))
     }
     colores.push(color);
     color = ''
@@ -61,8 +62,6 @@ function generarColores(colores) {
 $.get('/clientes/nombres', function(data) {
     let clientes = [];
     let colores = [];
-
-
     for(let i = 0; i < data.length; ++i) {
         clientes = [... clientes, data[i]]
         // genera colores aleatorios

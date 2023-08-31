@@ -22,20 +22,13 @@ class UserController extends Controller
      {
         $this->middleware(['auth']);
      }
-    public function index()
+    public function index(User $user)
     {
-        $validarAdmin = Auth::user()->rol_id;
-
-        if($validarAdmin !=1)
-        {
-            return back();
-        }
-
-        //
-        $usuarios = User::paginate(10);
+        $this->authorize('viewAny', $user);
+        $usuarios = User::all();
         $roles = DB::table('rols')->get();
 
-        sleep(3);
+        // sleep(3);
 
         return view('users.index', compact('usuarios', 'roles'));
     }
@@ -111,6 +104,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        $this->authorize('viewAny', $user);
         $roles = DB::table('rols')->get();
         return view('users.edit', compact('user', 'roles'));
     }
@@ -125,6 +119,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $this->authorize('viewAny', $user);
         $this->validate($request, [
             'name' => 'required|string',
             'rol_id' => 'required',

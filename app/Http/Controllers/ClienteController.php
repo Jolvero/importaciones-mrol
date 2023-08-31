@@ -24,11 +24,6 @@ class ClienteController extends Controller
         {
             return back();
         }
-
-        if($validarAdmin !=1)
-        {
-            return back();
-        }
         // registrar clientes
         $clientes = Cliente::all();
         foreach ($clientes as $cliente) {
@@ -115,6 +110,7 @@ class ClienteController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -165,6 +161,12 @@ class ClienteController extends Controller
     public function show($id)
     {
         //
+        $validarAdmin = Auth::user()->rol_id;
+
+        if($validarAdmin !=1)
+        {
+            return back();
+        }
     }
 
     /**
@@ -176,6 +178,8 @@ class ClienteController extends Controller
     public function edit(Cliente $cliente)
     {
         //
+        $this->authorize('viewAny', $cliente);
+
         if ($cliente->rfc) {
             $cliente->rfc = Crypt::decryptString($cliente->rfc);
         }
@@ -198,6 +202,8 @@ class ClienteController extends Controller
     public function update(Request $request, Cliente $cliente)
     {
         //
+        $this->authorize('viewAny', $cliente);
+
         $data = $request->validate([
             'cliente' => 'required',
             'rfc' => 'nullable',
