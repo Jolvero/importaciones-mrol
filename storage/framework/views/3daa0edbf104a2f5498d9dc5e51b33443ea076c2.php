@@ -1,6 +1,7 @@
 <?php $__env->startSection('scripts'); ?>
     <script src="<?php echo e(asset('js/registrarUsuario.js')); ?>" defer></script>
     <script src="<?php echo e(asset('js/alertas.js')); ?>" defer></script>
+    <script src="<?php echo e(asset('js/usuarios.js')); ?>" defer></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <?php if(session('mensaje')): ?>
@@ -244,6 +245,12 @@ unset($__errorArgs, $__bag); ?>
 
                             <a href="<?php echo e(route('user.edit', ['user' => $usuario->id])); ?>" class="btn my-2 d-block "
                                 style="background: #c3c3c3;"><img src="<?php echo e('/images/editar.png'); ?>" alt=""></a>
+
+                                <form method="POST" id="eliminar-usuario">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="button" class="btn btn-dark d-block mb-2 w-100" id="<?php echo e($usuario->id); ?>" data-toggle="tooltip" data-placement="top" title="Eliminar Usuario" onclick="eliminarUsuario(<?php echo e($usuario->id); ?>);">  <img src="<?php echo e('/images/eliminar.png'); ?>" alt=""></button>
+                                </form>
 
                         </td>
                     </tr>

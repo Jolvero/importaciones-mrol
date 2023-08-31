@@ -3,6 +3,7 @@
 @section('scripts')
     <script src="{{ asset('js/registrarUsuario.js') }}" defer></script>
     <script src="{{ asset('js/alertas.js') }}" defer></script>
+    <script src="{{ asset('js/usuarios.js') }}" defer></script>
 @endsection
 @section('content')
     @if (session('mensaje'))
@@ -160,6 +161,12 @@
 
                             <a href="{{ route('user.edit', ['user' => $usuario->id])}}" class="btn my-2 d-block "
                                 style="background: #c3c3c3;"><img src="{{ '/images/editar.png' }}" alt=""></a>
+
+                                <form method="POST" id="eliminar-usuario">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-dark d-block mb-2 w-100" id="{{$usuario->id}}" data-toggle="tooltip" data-placement="top" title="Eliminar Usuario" onclick="eliminarUsuario({{$usuario->id}});">  <img src="{{'/images/eliminar.png'}}" alt=""></button>
+                                </form>
 
                         </td>
                     </tr>
