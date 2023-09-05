@@ -555,7 +555,12 @@ unset($__errorArgs, $__bag); ?>
                 <?php $__currentLoopData = $embarques; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $embarque): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td><?php echo e($embarque->referencia); ?></td>
+                        <?php if($embarque->cliente): ?>
+
                         <td><?php echo e($embarque->cliente->cliente); ?></td>
+                        <?php else: ?>
+                        <td><?php echo e($embarque->cliente_id); ?></td>
+                        <?php endif; ?>
                         <td><?php echo e($embarque->mes->mes); ?></td>
                         <td class="font-weight-bold"><?php echo e($embarque->estado->nombre); ?></td>
                         <td>

@@ -54,15 +54,9 @@ class EmbarqueController extends Controller
     public function index(Embarque $embarque)
     {
         ini_set('max_execution_time', 60);
-
-
         sleep(2);
         $this->authorize('index', $embarque);
 
-        // $embarques = auth()->user()->embarques;
-
-
-        // Embarques con paginación
         $embarques = Embarque::all();
         $clientes = Cliente::all();
         $mes = Carbon::now()->locale('es');
@@ -75,7 +69,11 @@ class EmbarqueController extends Controller
 
         foreach($embarques as $embarque)
         {
-            $embarque->cliente->cliente = Crypt::decryptString($embarque->cliente->cliente);
+            if($embarque->cliente != null)
+            {
+                $embarque->cliente->cliente = Crypt::decryptString($embarque->cliente->cliente);
+            }
+
 
         }
         //

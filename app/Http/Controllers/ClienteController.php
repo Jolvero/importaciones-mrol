@@ -239,6 +239,7 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+
         Cliente::whereid($id)->delete();
     }
 }

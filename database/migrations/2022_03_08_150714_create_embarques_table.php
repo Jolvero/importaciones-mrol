@@ -58,7 +58,7 @@ class CreateEmbarquesTable extends Migration
             $table->id();
             $table->integer('cliente_id');
             $table->foreignId('tipo_id')->references('id')->on('tipoImportación');
-            $table->foreignId('mes_id')->references('id')->on('meses');
+            $table->foreignId('mes_id')->references('id')->on('mes');
             $table->string('referencia');
             $table->date('prealertado');
             $table->foreignId('documentacion_id')->references('id')->on('documentacion_embarques')->comment('el estatus de documentación del embarque');

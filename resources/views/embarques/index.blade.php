@@ -366,7 +366,12 @@
                 @foreach ($embarques as $embarque)
                     <tr>
                         <td>{{ $embarque->referencia }}</td>
+                        @if($embarque->cliente)
+
                         <td>{{$embarque->cliente->cliente}}</td>
+                        @else
+                        <td>{{$embarque->cliente_id}}</td>
+                        @endforelse
                         <td>{{$embarque->mes->mes}}</td>
                         <td class="font-weight-bold">{{ $embarque->estado->nombre }}</td>
                         <td>
