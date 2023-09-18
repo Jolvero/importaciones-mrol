@@ -12,6 +12,12 @@ class DashboardController extends Controller
 {
     //
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
         $user = Auth::user()->rol_id;
@@ -43,7 +49,7 @@ class DashboardController extends Controller
             $ajaxMes[] = $embarques;
         }
 
-        return $ajaxMes;
+        return response()->json($ajaxMes);
     }
 
     public function embarquesMesCliente()
@@ -72,7 +78,7 @@ class DashboardController extends Controller
             $embarques = Embarque::where('mes_id', $mesActual)->where('cliente_id', $cliente->id)->count();
             $ajaxCliente[] = $embarques;
         }
-        return $ajaxCliente;
+        return response()->json($ajaxCliente);
     }
 
     public function obtenerTopMesEmbarques()
@@ -114,7 +120,7 @@ class DashboardController extends Controller
             }
         }
 
-        return $arrayTopsMes;
+        return response()->json($arrayTopsMes);
     }
 
     public function kpis()
@@ -191,7 +197,7 @@ class DashboardController extends Controller
 
         }
 
-        return $ajaxPrincipal;
+        return response()->json($ajaxPrincipal);
 
 
     }

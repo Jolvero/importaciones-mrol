@@ -1,8 +1,11 @@
 <?php
 
+use App\Prueba;
 use App\Embarque;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\PruebaResource;
+use App\Http\Resources\PruebaCollection;
 
 /*
 |--------------------------------------------------------------------------
