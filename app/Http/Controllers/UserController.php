@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Embarque;
+use App\Http\Requests\UserRequest;
 use App\Rol;
 use App\User;
 use Illuminate\Support\Str;
@@ -50,7 +51,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
 
         // modificar request
@@ -58,22 +59,10 @@ class UserController extends Controller
 
         sleep(5);
         //
-        $this->validate($request, [
-            'name' => 'required|max:30',
-            'username' => 'required|unique:users|max:20',
-            'email' => 'required|unique:users|max:60',
-            'rol_id' => 'required',
-            'cliente_id' => 'nullable',
-            'password' => 'required|confirmed|min:6'
-        ]);
+        $data = $request->validated();
 
-        $user = new User();
-        $user->name = $request['name'];
-        $user->username = $request['username'];
-        $user->email = $request['email'];
-        $user->rol_id = $request['rol_id'];
-        $user->cliente_id = $request['cliente_id'];
-        $user->password = Hash::make($request['password']);
+        $user = new User($data);
+        $user->password = Hash::make($data['password']);
 
         $user->save();
 

@@ -1,19 +1,19 @@
 // si el usuario es un cliente se agrega select clientes
 $('#rol_id').on('change', function validarRolCliente() {
-    if($('#rol_id ').val() == '3' ) {
+    if ($('#rol_id ').val() == '3') {
         $.get('/clientes/all', function (data) {
             var option = '';
-                var select = '<select name="cliente_id" class="form-control"id="cliente_id" name="cliente_id"></select>';
-                var formGroup = '<div class="form-group form-clientes" id="select-cliente" <label>Cliente</label></div>';
+            var select = '<select name="cliente_id" class="form-control"id="cliente_id" name="cliente_id"></select>';
+            var formGroup = '<div class="form-group form-clientes" id="select-cliente" <label>Cliente</label></div>';
 
-                $('#cliente').addClass('col-md-6', 'cliente-select');
-                $('#cliente').append(formGroup);
-                $('.form-clientes').append(select)
+            $('#cliente').addClass('col-md-6', 'cliente-select');
+            $('#cliente').append(formGroup);
+            $('.form-clientes').append(select)
 
-                for(let i = 0; i< data.length; ++i) {
-                    option+= `<option value= ${data[i].id}>${data[i].cliente}</option>`
-                }
-                $('#cliente_id').append(option)
+            for (let i = 0; i < data.length; ++i) {
+                option += `<option value= ${data[i].id}>${data[i].cliente}</option>`
+            }
+            $('#cliente_id').append(option)
 
         })
 
@@ -25,7 +25,7 @@ $('#rol_id').on('change', function validarRolCliente() {
 $('#form-usuario').on('submit', function () {
     const nombre = document.getElementById('name').value;
 
-    if(nombre == null || nombre == 0 || /^\+$/.test(nombre)) {
+    if (nombre == null || nombre == 0 || /^\+$/.test(nombre)) {
 
         Swal.fire({
             title: 'validación',
@@ -37,8 +37,8 @@ $('#form-usuario').on('submit', function () {
 
     const username = document.querySelector('#username')
 
-    if(username) {
-        if(username.value == null || username.value == 0 || /^\+$/.test(username.value)) {
+    if (username) {
+        if (username.value == null || username.value == 0 || /^\+$/.test(username.value)) {
 
             Swal.fire({
                 title: 'validación',
@@ -52,22 +52,22 @@ $('#form-usuario').on('submit', function () {
 
     const correo = document.querySelector('#email');
 
-    if(correo) {
-// Define our regular expression.
-var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    if (correo) {
+        // Define our regular expression.
+        var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-    if (validEmail.test(correo.value)) {
-        if(correo.value.includes('.com,mx')) {
-            return;
+        if (validEmail.test(correo.value)) {
+            if (correo.value.includes('.com,mx')) {
+                return;
+            }
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'El campo email es Requerido, valida que sea una dirección de correo valida',
+                icon: 'error'
+            })
+            return false;
         }
-    } else {
-        Swal.fire({
-            title: 'Error',
-            text: 'El campo email es Requerido, valida que sea una dirección de correo valida',
-            icon: 'error'
-        })
-        return false;
-    }
 
     }
 
@@ -77,7 +77,7 @@ var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     const rol_id = document.getElementById('rol_id').value;
 
-    if(rol_id == null || rol_id == 0 || /^\+$/.test(rol_id)) {
+    if (rol_id == null || rol_id == 0 || /^\+$/.test(rol_id)) {
 
         Swal.fire({
             title: 'validación',
@@ -89,7 +89,7 @@ var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     const password = document.getElementById('password').value;
 
-    if(password == null || password == 0 || /^\+$/.test(password)) {
+    if (password == null || password == 0 || /^\+$/.test(password)) {
 
         Swal.fire({
             title: 'validación',
@@ -101,7 +101,7 @@ var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     const password_confirmation = document.getElementById('password_confirmation').value;
 
-    if(password_confirmation == null || password_confirmation == 0 || /^\+$/.test(password_confirmation)) {
+    if (password_confirmation == null || password_confirmation == 0 || /^\+$/.test(password_confirmation)) {
 
         Swal.fire({
             title: 'validación',
@@ -111,7 +111,7 @@ var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         return false;
     }
 
-    if(password != password_confirmation) {
+    if (password != password_confirmation) {
         Swal.fire({
             title: 'validación',
             text: 'Las contraseñas no coinciden',
@@ -125,8 +125,8 @@ var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         text: 'Generando Usuario',
         icon: 'info',
         allowOutsideClick: false,
-        allowEscapeKey:false,
-        didOpen:()=> {
+        allowEscapeKey: false,
+        didOpen: () => {
             Swal.showLoading()
         }
     })
@@ -135,7 +135,7 @@ var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 })
 
 const tablaUsuarios = document.querySelector('table');
-if(tablaUsuarios) {
+if (tablaUsuarios) {
     $('#table-usuarios').DataTable({
         responsive: true,
         colReorder: true,
@@ -160,11 +160,12 @@ if(tablaUsuarios) {
                 "previous": "Anterior"
             },
 
-},columnDefs: [
-    {
-        className: 'dt-center', targets: '_all'
-        }
-]
+        }, columnDefs: [
+            {
+                className: 'dt-center', targets: '_all'
+            }
+        ]
     }
-    )};
+    )
+};
 

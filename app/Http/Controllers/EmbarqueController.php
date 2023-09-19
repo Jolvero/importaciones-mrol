@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DocumentacionEmbarque;
 use App\Exports\EmbarquesExport;
+use App\Http\Requests\EmbarqueRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -108,39 +109,11 @@ class EmbarqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmbarqueRequest $request)
     {
 
         // Validación
-        $data = $request->validate([
-            'cliente_id' => 'required',
-            'tipo_id' => 'required',
-            'mes_id' => 'required',
-            'referencia' => 'required|min:7',
-            'estado_id' => 'required',
-            'documentacion_id' => 'required',
-            'documentacion' => 'nullable',
-            'file_id' => 'required',
-            'prealertado' => 'required',
-            'arribo' => 'nullable',
-            'revalidación' => 'nullable',
-            'pedimento' => 'nullable',
-            'previo' => 'nullable|after_or_equal:arribo',
-            'despacho' => 'nullable|after:arribo',
-            'estatus_despacho' => 'nullable',
-            'cuenta_gastos' => 'nullable|after:previo',
-            'pago_anticipo' => 'nullable',
-            'uuid_cta_gastos' => 'required',
-            'uuid' => 'required|uuid',
-            'observaciones' => 'nullable',
-            'observaciones_pedimento' => 'nullable'
-        ]);
-
-
-        $verificarExistencias = Embarque::where('referencia', $request['referencia'])->pluck('referencia')->last();
-        if ($verificarExistencias == $request['referencia']) {
-            return back()->with('estado', 'El embarque con la referencia ' . $request['referencia'] . ' ya ha sido registrado, editalo o borralo para poder realizar cambios');
-        }
+        $data = $request->validated();
 
         $uuidFiles = Uuid::uuid4();
         $uuidCta_Gastos = Uuid::uuid4();
@@ -160,9 +133,6 @@ class EmbarqueController extends Controller
         $filesCG = $request->file('file_ctagastos');
         $uuidCuentaGastos = $request['uuid_cta_gastos'];
         $uuid_kpi = $request['uuid_kpi'];
-
-
-
 
         if ($request->hasFile('files')) {
             foreach ($_FILES['files']['size'] as $file) {
