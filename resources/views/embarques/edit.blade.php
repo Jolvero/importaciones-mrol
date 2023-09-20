@@ -417,12 +417,13 @@
                                         {{ $estatus->nombre }}
                                     </option>
                                 @endforeach
-                                @error('despacho_id')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
                             </select>
+                            @error('despacho_id')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div>
                     </div>
 

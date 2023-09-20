@@ -39,7 +39,7 @@ class EmbarqueRequest extends FormRequest
             'pedimento' => 'nullable',
             'previo' => 'nullable|after_or_equal:arribo',
             'despacho' => 'nullable|after:arribo',
-            'estatus_despacho' => 'nullable',
+            'estatus_despacho' => 'nullable|required_if:estado_id,6',
             'cuenta_gastos' => 'nullable|after:previo',
             'pago_anticipo' => 'nullable',
             'uuid_cta_gastos' => 'required',

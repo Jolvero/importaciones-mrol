@@ -340,7 +340,7 @@ class EmbarqueController extends Controller
             'pedimento' => 'nullable',
             'previo' => 'nullable|after_or_equal:arribo',
             'despacho' => 'nullable|after:arribo',
-            'despacho_id' => 'nullable',
+            'despacho_id' => 'required_if:estado_id,6',
             'cuenta_gastos' => 'nullable|after:previo',
             'pago_anticipo' => 'nullable',
             'uuid_cta_gastos' => 'required',
@@ -348,7 +348,6 @@ class EmbarqueController extends Controller
             'observaciones_pedimento' => 'nullable',
             'observaciones' => 'nullable'
         ]);
-
 
 
         $obtenerNombreProforma = '';
@@ -469,6 +468,11 @@ class EmbarqueController extends Controller
 
         $embarque->file_id = $embarque->file_id;
         $embarque->uuid_cta_gastos = $embarque->uuid_cta_gastos;
+
+        if($embarque->despacho_id && $embarque->estado_id !== 6)
+        {
+            $embarque->estado_id = 6;
+        }
         $embarque->save();
 
         if ($embarque->estado_id == 4 && $request['cliente_id'] == 2) {
