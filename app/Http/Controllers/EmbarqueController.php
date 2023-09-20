@@ -449,6 +449,7 @@ class EmbarqueController extends Controller
         $embarque->tipo_id = $data['tipo_id'];
         $embarque->mes_id = $data['mes_id'];
         $embarque->referencia = $data['referencia'];
+        // validar que se asigne estatus a despachado si se seleccione algun estatus de despacho
         if($embarque->despacho_id && $embarque->estado_id !== 6)
         {
             $embarque->estado_id = 6;
