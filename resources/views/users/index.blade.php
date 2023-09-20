@@ -126,7 +126,7 @@
 
 
 
-                            <button type="submit" class="btn btn-success mt-2 text-white" id="btn-enviar">Enviar</button>
+                            <button type="submit" class="btn btn-success mt-2 text-white" id="btn-enviar">Registrar Usuario</button>
 
                             <button type="button" class="btn btn-dark mt-2 mx-2" data-dismiss="modal">Cancelar</button>
                         </form>
