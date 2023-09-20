@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
+
 
 class UserRequest extends FormRequest
 {
@@ -30,7 +32,7 @@ class UserRequest extends FormRequest
             'email' => 'required|unique:users|max:60',
             'rol_id' => 'required',
             'cliente_id' => 'nullable',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|confirmed|min:6|'
         ];
     }
 }
