@@ -450,14 +450,7 @@ class EmbarqueController extends Controller
         $embarque->mes_id = $data['mes_id'];
         $embarque->referencia = $data['referencia'];
         // validar que se asigne estatus a despachado si se seleccione algun estatus de despacho
-        if($embarque->despacho_id && $embarque->estado_id !== 6)
-        {
-            $embarque->estado_id = 6;
-        }
-        else
-        {
-            $embarque->estado_id = $data['estado_id'];
-        }
+
 
         $embarque->documentacion_id = $data['documentacion_id'];
         $embarque->documentacion = $data['documentacion'];
@@ -478,6 +471,7 @@ class EmbarqueController extends Controller
         $embarque->file_id = $embarque->file_id;
         $embarque->uuid_cta_gastos = $embarque->uuid_cta_gastos;
 
+        $embarque->despacho_id ? $embarque->estado_id = 6 : $embarque->estado_id = $data['estado_id'];
 
         $embarque->save();
 
