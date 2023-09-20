@@ -449,7 +449,15 @@ class EmbarqueController extends Controller
         $embarque->tipo_id = $data['tipo_id'];
         $embarque->mes_id = $data['mes_id'];
         $embarque->referencia = $data['referencia'];
-        $embarque->estado_id = $data['estado_id'];
+        if($embarque->despacho_id && $embarque->estado_id !== 6)
+        {
+            $embarque->estado_id = 6;
+        }
+        else
+        {
+            $embarque->estado_id = $data['estado_id'];
+        }
+
         $embarque->documentacion_id = $data['documentacion_id'];
         $embarque->documentacion = $data['documentacion'];
         $embarque->prealertado = $data['prealertado'];
@@ -469,10 +477,7 @@ class EmbarqueController extends Controller
         $embarque->file_id = $embarque->file_id;
         $embarque->uuid_cta_gastos = $embarque->uuid_cta_gastos;
 
-        if($embarque->despacho_id && $embarque->estado_id !== 6)
-        {
-            $embarque->estado_id = 6;
-        }
+
         $embarque->save();
 
         if ($embarque->estado_id == 4 && $request['cliente_id'] == 2) {
