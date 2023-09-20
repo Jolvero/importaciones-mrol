@@ -244,6 +244,17 @@ $('#formulario').on('submit', function validarFormulario() {
          }
      }
 
+     const despacho_id = document.getElementById('despacho_id').value;
+
+    if (estado_id == 6 && despacho_id == 0 || /^\+$/.test(despacho_id)) {
+
+         Swal.fire({
+             title: 'validación',
+             text: 'Debes seleccionar un estatus de despacho',
+             icon: 'error'
+         })
+         return false;
+     }
     Swal.fire({
         title: 'importacion',
         text: 'Subiendo Importacion',
