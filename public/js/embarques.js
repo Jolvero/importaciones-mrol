@@ -244,10 +244,10 @@ $('#formulario').on('submit', function validarFormulario() {
          }
      }
 
-     const despacho_id = document.querySelector('#despacho_id').value;
+     const despacho_id = document.querySelector('#despacho_id')
 
      if(despacho_id) {
-        if (estado_id == 6 && despacho_id == 0 || /^\+$/.test(despacho_id)) {
+        if (estado_id == 6 && despacho_id.value == 0 || /^\+$/.test(despacho_id.value)) {
 
             Swal.fire({
                 title: 'validación',
