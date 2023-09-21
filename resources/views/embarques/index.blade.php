@@ -153,7 +153,7 @@
                                     <label for="prealertado">Prealertado <span class="text-danger">*</span></label>
                                     <input class="form-control @error('prealertado') is-invalid @enderror" type="date"
                                         name="prealertado" id="prealertado"
-                                        value="{{ old('prealertado') }}{{ $fecha }}">
+                                        value="{{ old('prealertado')}}">
                                     @error('prealertado')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -262,6 +262,28 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="despacho_id">Estatus Despacho</label>
+                                    <select class="form-control text-uppercase @error('despacho_id') is-invalid @enderror"
+                                        type="date" id="despacho_id" name="despacho_id">
+                                        <option value="">-- Seleccione --</option>
+
+                                        @foreach ($elementosDespachos as $estatus)
+                                            <option value="{{ $estatus->id }}"
+                                                {{ old('despacho_id') == $estatus->id ? 'selected' : '' }}>                                                {{ $estatus->nombre }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                    @error('despacho_id')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
 

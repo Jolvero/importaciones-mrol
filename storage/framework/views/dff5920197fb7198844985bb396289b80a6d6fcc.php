@@ -201,7 +201,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" type="date"
                                         name="prealertado" id="prealertado"
-                                        value="<?php echo e(old('prealertado')); ?><?php echo e($fecha); ?>">
+                                        value="<?php echo e(old('prealertado')); ?>">
                                     <?php $__errorArgs = ['prealertado'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -405,6 +405,43 @@ $message = $__bag->first($__errorArgs[0]); ?>
                                             <strong><?php echo e($message); ?></strong>
                                         </span>
                                     <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="despacho_id">Estatus Despacho</label>
+                                    <select class="form-control text-uppercase <?php $__errorArgs = ['despacho_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                        type="date" id="despacho_id" name="despacho_id">
+                                        <option value="">-- Seleccione --</option>
+
+                                        <?php $__currentLoopData = $elementosDespachos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estatus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($estatus->id); ?>"
+                                                <?php echo e(old('despacho_id') == $estatus->id ? 'selected' : ''); ?>>                                                <?php echo e($estatus->nombre); ?>
+
+                                            </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                    </select>
+                                    <?php $__errorArgs = ['despacho_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>

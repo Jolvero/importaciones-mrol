@@ -63,19 +63,16 @@ class EmbarqueController extends Controller
         $mes = Carbon::now()->locale('es');
         $mesEspanol = $mes->monthName;
         $obtenerMeses = DB::table('mes')->get();
+        $elementosDespachos = Despacho::all();
 
         foreach ($clientes as $cliente) {
             $cliente->cliente = Crypt::decryptString($cliente->cliente);
         }
 
-        foreach($embarques as $embarque)
-        {
-            if($embarque->cliente != null)
-            {
+        foreach ($embarques as $embarque) {
+            if ($embarque->cliente != null) {
                 $embarque->cliente->cliente = Crypt::decryptString($embarque->cliente->cliente);
             }
-
-
         }
         //
         // DB::table('estado_embarque')->get()->pluck('nombre', 'id');
@@ -89,7 +86,7 @@ class EmbarqueController extends Controller
         $documentaciones = DocumentacionEmbarque::all(['id', 'nombre']);
 
         // $embarques = Embarque::all();
-        return view('embarques.index', compact('clientes', 'mes', 'mesEspanol', 'obtenerMeses', 'estados', 'tipos', 'documentaciones', 'embarques'));
+        return view('embarques.index', compact('clientes', 'mes', 'mesEspanol', 'obtenerMeses', 'estados', 'tipos', 'documentaciones', 'embarques', 'elementosDespachos'));
     }
 
 
@@ -201,7 +198,10 @@ class EmbarqueController extends Controller
         }
 
         unset($carpeta);
+        // validar que se asigne estatus a despachado si se seleccione algun estatus de despacho
+        $data['despacho_id'] ? $data['estado_id'] = 6 : $data['estado_id'] = $data['estado_id'];
         $embarque = new Embarque($data);
+
         $embarque->mes_id = $request['mes_id'];
         $embarque->file_id = $uuidFiles;
         $embarque->user = Auth::user()->name;
@@ -220,10 +220,9 @@ class EmbarqueController extends Controller
         // crear carpeta nueva
         $carpeta = $embarque->referencia . '_previo';
         //validar si ya existe una carpeta y eliminarla
-        $ruta = '/public/embarques/'. $carpeta;
-        $validarCarpeta = Storage::exists('/public/embarques/'. $carpeta);
-        if($validarCarpeta == true)
-        {
+        $ruta = '/public/embarques/' . $carpeta;
+        $validarCarpeta = Storage::exists('/public/embarques/' . $carpeta);
+        if ($validarCarpeta == true) {
             Storage::deleteDirectory($ruta);
         }
         Storage::makeDirectory('/public/embarques/' . $carpeta);
@@ -237,9 +236,8 @@ class EmbarqueController extends Controller
         $zip = new ZipArchive;
         $fileName = $carpeta . '.zip';
         // eliminar carpeta zip anteriormente creada
-        if(file_exists($fileName))
-        {
-             unlink(public_path($fileName));
+        if (file_exists($fileName)) {
+            unlink(public_path($fileName));
         }
 
         if ($zip->open(public_path($fileName), ZipArchive::CREATE) == true) {
@@ -255,8 +253,6 @@ class EmbarqueController extends Controller
 
         return response()->download(public_path($fileName));
     }
-
-
 
     /**
      * Display the specified resource.
@@ -450,8 +446,6 @@ class EmbarqueController extends Controller
         $embarque->mes_id = $data['mes_id'];
         $embarque->referencia = $data['referencia'];
         // validar que se asigne estatus a despachado si se seleccione algun estatus de despacho
-
-
         $embarque->documentacion_id = $data['documentacion_id'];
         $embarque->documentacion = $data['documentacion'];
         $embarque->prealertado = $data['prealertado'];
@@ -463,6 +457,7 @@ class EmbarqueController extends Controller
         $embarque->despacho_id = $data['despacho_id'];
         $embarque->cuenta_gastos = $data['cuenta_gastos'];
         $embarque->pago_anticipo = $data['pago_anticipo'];
+
         if ($request['observaciones_pedimento'] != null) {
             $embarque->observaciones_pedimento = $data['observaciones_pedimento'];
         }
@@ -547,8 +542,6 @@ class EmbarqueController extends Controller
         $proformas->delete();
         //Eliminar el embarque
         $embarque->delete();
-
-
     }
     // Busqueda de embarques en la página principal
     public function search(Embarque $embarque, Request $request)
@@ -565,6 +558,4 @@ class EmbarqueController extends Controller
 
         return view('busquedas.show', compact('embarques', 'busqueda'));
     }
-
-
 }
